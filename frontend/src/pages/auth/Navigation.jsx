@@ -58,7 +58,10 @@ const Navigation = () => {
                 
             </div>
             <div className="relative">
-                <button onClick={toggleDropDown} className='flex items-center text-gray-700 focus:outline-none'>
+                <button onMouseEnter={toggleDropDown}
+                    onClick={toggleDropDown}
+                    className='flex items-center text-gray-700 focus:outline-none'
+                >
                     {
                         userInfo ? <span className='text-white'>{userInfo.username}</span> 
                         : <></>
@@ -83,7 +86,7 @@ const Navigation = () => {
                     )}
                 </button>
                 {dropdownOpen && userInfo && (
-                    <ul className={`absolute right-0 mt-2 mr-14 space-y-2 bg-white text-gray-600 ${!userInfo.isAdmin ? '-top-20' : '-top-80'}`}>
+                    <ul className={`absolute left-8 -top-24 mt-2 mr-14 space-y-2 bg-white text-gray-600 ${!userInfo.isAdmin ? '-top-20' : '-top-80'}`}>
                         {userInfo.isAdmin && (
                             <>
                                 <li>
