@@ -9,17 +9,24 @@ import "./navigation.css";
 
 const Navigation = () => {
     const {userInfo} = useSelector(state => state.auth);
-    const [dropdownOpen, setDropDownOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const [showSideBar, setShowSideBar] = useState(false);
-    const toggleDropDown = () => {
-        setDropDownOpen(!dropdownOpen);
-    }
+    const handleMouseEnter = () => {
+        setDropdownOpen(true);
+    };
+
+    const handleMouseLeave = () => {
+        setDropdownOpen(false);
+    };
     const toggleSideBar = () => {
         setShowSideBar(!showSideBar);
     }
     const closeSideBar = () => {
         setShowSideBar(false);
     }
+    
+
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -57,10 +64,14 @@ const Navigation = () => {
                 </Link>
                 
             </div>
-            <div className="relative">
-                <button onMouseEnter={toggleDropDown}
-                    onClick={toggleDropDown}
-                    className='flex items-center text-gray-700 focus:outline-none'
+            <div className="relative group"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+                <button onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className='flex items-center text-gray-700 focus:outline-none hover:trigger'
                 >
                     {
                         userInfo ? <span className='text-white'>{userInfo.username}</span> 
@@ -86,7 +97,10 @@ const Navigation = () => {
                     )}
                 </button>
                 {dropdownOpen && userInfo && (
-                    <ul className={`absolute left-8 -top-24 mt-2 mr-14 space-y-2 bg-white text-gray-600 ${!userInfo.isAdmin ? '-top-20' : '-top-80'}`}>
+                    <ul className={`absolute left-8 -top-24 mt-2 mr-14 space-y-2 bg-opacity-80 bg-white backdrop-blur-2xl text-black ${!userInfo.isAdmin ? '-top-20' : '-top-80'}`}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
                         {userInfo.isAdmin && (
                             <>
                                 <li>

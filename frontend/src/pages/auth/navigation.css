@@ -14,3 +14,6 @@
     display: block; 
     opacity: 1;
 }
+.group:hover{
+    visibility: visible;
+}

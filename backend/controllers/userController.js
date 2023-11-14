@@ -133,9 +133,12 @@ const getUser = Handler(async (req, res) => {
 
 const updateUser = Handler(async (req, res) => {
     const user = await User.findById(req.params.id);
+    if(user.isAdmin){
+        throw new Error('Admins Can Not Be Edited');
+    }
     if(user){
         user.username = req.body.username || user.username;
-        user.isAdmin = Boolean(req.body.isAdmin);
+        user.isAdmin = Boolean(req.body.isAdmin) || user.isAdmin;
         const updatedUser = await user.save();
         res.json({
             _id: updatedUser._id,

@@ -46,7 +46,7 @@ const Profile = () => {
     }
 
     return (
-        <div className='container mx-auto p-4'>
+        <div className='mx-auto p-4 w-[100vw] h-[100vh] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-400 to-sky-400'>
             <div className="flex flex-col justify-center items-center md:flex md:space-x-4 mt-[10rem]">
                 <h2 className='text-2xl font-semibold mb-4'>Update Profile</h2>
                 <form onSubmit={HandlerSubmit} className='w-[500px]'>
@@ -82,13 +82,13 @@ const Profile = () => {
                     </div>
                     <div className="flex justify-between">
                         <button type='submit' 
-                            className='bg-teal-500 text-white py-2 px-4 rounded hover:bg-teal-700'
+                            className='border bg-teal-500 text-white py-2 px-4 rounded hover:bg-teal-700'
                             disabled={isLoading}
                         >
                             Update
                         </button>
                         <Link to='/user-orders' 
-                            className='bg-teal-500 text-white py-2 px-4 rounded hover:bg-teal-700'>
+                            className='border bg-teal-500 text-white py-2 px-4 rounded hover:bg-teal-700'>
                             My Orders
                         </Link>
                     </div>
