@@ -2,6 +2,7 @@ import User from "../models/userModel.js";
 import Handler from "../middlewares/Handler.js";
 import bcrypt from "bcryptjs";
 import token from "../utilities/tokenJWT.js";
+import emailConfirmation from "../utilities/emailConfirmation.js";
 
 const createUser = Handler(async (req, res) => {
     const {username, email, password} = req.body;
@@ -23,6 +24,9 @@ const createUser = Handler(async (req, res) => {
             username: newUser.username, 
             email: newUser.email, 
             isAdmin: newUser.isAdmin
+        });
+        emailConfirmation({
+            email, username, token: newUser.token
         });
     } catch (error) {
         res.status(400)
@@ -144,4 +148,22 @@ const updateUser = Handler(async (req, res) => {
     }
 });
 
-export {createUser, loginUser, logoutUser, getAllUsers, getProfile, updateProfile, deleteUser, getUser, updateUser};
+const confirmAccount = Handler(async (req, res) => {
+    const {token} = req.params;
+
+    const userConfirmed = await User.findOne({token});
+    if(!userConfirmed){
+        res.status(403);
+        throw new Error('Invalid Token');
+    }
+    try {
+        userConfirmed.token = null;
+        userConfirmed.isConfirmed = true;
+        await userConfirmed.save();
+        res.json({message:"This User Has Been Confirmed Succesfully"});
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+export {createUser, loginUser, logoutUser, getAllUsers, getProfile, updateProfile, deleteUser, getUser, updateUser, confirmAccount};

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import genId from '../utilities/genId.js';
 
 const userSchema = mongoose.Schema({
     username: {
@@ -14,6 +15,14 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
 
+    },
+    isConfirmed: {
+        type: Boolean,
+        default: false
+    },
+    token: {
+        type: String,
+        default: genId()
     },
     isAdmin: {
         type: Boolean,
