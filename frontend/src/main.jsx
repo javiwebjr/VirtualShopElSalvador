@@ -11,6 +11,7 @@ import Register from './pages/auth/Register.jsx';
 import Profile from './pages/user/Profile.jsx';
 import AdminRoute from './pages/admin/AdminRoute.jsx';
 import UserList from './pages/admin/UserList.jsx';
+import ConfirmAccount from './components/ConfirmAccount.jsx';
 import "./index.css";
 
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       
       <Route path='' element={<PrivateRoute/>}>
         <Route path='/profile' element={<Profile/>} />
+        <Route path='/confirm-account/:id' element={<ConfirmAccount/>} />
       </Route>
       {/* AdminRoute */}
       <Route path='/admin' element={<AdminRoute/>}>

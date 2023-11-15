@@ -18,7 +18,7 @@ const emailConfirmation = async (data) => {
         text: "Enter the link to confirm your account",
         html: `<h1>Hi, ${username}, Welcome to Online Shop El Salvador</h1>
             <p>To start shopping please confirm your account here:
-                <a href="http://localhost:4000/api/users/confirmuser/${token}">Confirm Your Account Here</a>
+                <a href="http://localhost:5173/confirm-account/${token}">Confirm Your Account Here</a>
             </p>
 
             <p>If you did not request this link, please ignore this message</p>

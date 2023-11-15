@@ -57,6 +57,11 @@ export const userApiSlice = apiSlice.injectEndpoints({
                 body: data
             }),
             invalidatesTags: ['User']
+        }),
+        confirmUser: builder.mutation({
+            query: token => ({
+                url: `${USER_URL}/confirmuser/${token}`
+            })
         })
     })
 });
@@ -69,5 +74,6 @@ export const {
     useGetUsersQuery,
     useDeleteUserMutation,
     useGetUserDetailsQuery,
-    useUpdateUserMutation
+    useUpdateUserMutation,
+    useConfirmUserMutation
 } = userApiSlice;
