@@ -67,6 +67,7 @@ const Navigation = () => {
             <div className="relative group"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
+                onClick={handleMouseLeave}
             >
                 <button onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
@@ -100,6 +101,7 @@ const Navigation = () => {
                     <ul className={`absolute left-8 -top-24 mt-2 mr-14 space-y-2 bg-opacity-80 bg-white backdrop-blur-2xl text-black ${!userInfo.isAdmin ? '-top-20' : '-top-80'}`}
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
+                        onClick={handleMouseLeave}
                     >
                         {userInfo.isAdmin && (
                             <>
