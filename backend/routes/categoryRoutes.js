@@ -5,7 +5,7 @@ import { createCategory, updateCategory, deleteCategory, getAllCategories, categ
 
 router.route('/').post(auth, authorizeAdmin ,createCategory);
 router.route('/:categoryId').put(auth, authorizeAdmin, updateCategory);
-router.route('/:categoryId').delete(auth, authorizeAdmin, deleteCategory);
+router.route('/delete/:categoryId').delete(auth, authorizeAdmin, deleteCategory);
 router.route('/categories').get(getAllCategories);
 router.route('/:categoryId').get(category);
 
