@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import { 
     useCreateProductMutation, 
@@ -13,7 +13,7 @@ const ProductList = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [category, setCategory] = useState(categories?.length > 0 ? categories[0]._id : "");
+    const [category, setCategory] = useState("");
     const [quantity, setQuantity] = useState('');
     const [brand, setBrand] = useState('');
     const [stock, setStock] = useState(0);
@@ -23,6 +23,11 @@ const ProductList = () => {
     const [uploadProductImage] = useUploadProductImageMutation();
     const [createProduct] = useCreateProductMutation();
     
+    useEffect(() => {
+        if (categories && categories.length > 0) {
+        setCategory(categories[0]._id);
+        }
+    }, [categories]);
 
     const uploadFileHandler = async (e) => {
         const formData = new FormData();
@@ -128,15 +133,15 @@ const ProductList = () => {
                                 <label htmlFor="name block">Count in Stock</label><br />
                                 <input type="text" 
                                     className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-black'
-                                    value={stock}
                                     onChange={e => setStock(e.target.value)}
+                                    value={stock}
                                 />
                             </div>
                             <div>
                                 <label htmlFor="">Category</label><br />
                                 <select placeholder='Category' 
                                     className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-black'
-                                    value={categories?._id}
+                                    value={category || ""}
                                     onChange={e=> setCategory(e.target.value)}
                                 >
                                     {categories?.map(cat => (

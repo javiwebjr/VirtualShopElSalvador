@@ -14,6 +14,7 @@ import UserList from './pages/admin/UserList.jsx';
 import ConfirmAccount from './components/ConfirmAccount.jsx';
 import CategoryList from './pages/admin/CategoryList.jsx';
 import ProductList from './pages/admin/ProductList.jsx';
+import ProductUpdate from './pages/admin/ProductUpdate.jsx';
 import "./index.css";
 // import ConfirmedRoute from './components/ConfirmedRoute.jsx';
 
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
         <Route path='userlist' element={<UserList/>} />
         <Route path='categorylist' element={<CategoryList/>} />
         <Route path='productlist' element={<ProductList/>} />
+        <Route path='product/update/:id' element={<ProductList/>} />
       </Route>
     </Route>
   )
