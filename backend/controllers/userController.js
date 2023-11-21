@@ -23,7 +23,7 @@ const createUser = Handler(async (req, res) => {
             _id: newUser._id, 
             username: newUser.username, 
             email: newUser.email, 
-            isAdmin: newUser.isAdmin
+            isAdmin: newUser.isAdmin,
         });
         emailConfirmation({
             email, username, token: newUser.token
@@ -50,7 +50,8 @@ const loginUser = Handler(async (req, res) => {
                 _id: userExist._id, 
                 username: userExist.username, 
                 email: userExist.email, 
-                isAdmin: userExist.isAdmin
+                isAdmin: userExist.isAdmin,
+                isConfirmed: userExist.isConfirmed
             });
             return;
         }

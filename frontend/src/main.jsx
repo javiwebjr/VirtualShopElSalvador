@@ -13,7 +13,9 @@ import AdminRoute from './pages/admin/AdminRoute.jsx';
 import UserList from './pages/admin/UserList.jsx';
 import ConfirmAccount from './components/ConfirmAccount.jsx';
 import CategoryList from './pages/admin/CategoryList.jsx';
+import ProductList from './pages/admin/ProductList.jsx';
 import "./index.css";
+// import ConfirmedRoute from './components/ConfirmedRoute.jsx';
 
 
 const router = createBrowserRouter(
@@ -23,13 +25,14 @@ const router = createBrowserRouter(
       <Route path='/register' element={<Register/>} />
       
       <Route path='' element={<PrivateRoute/>}>
-        <Route path='/profile' element={<Profile/>} />
         <Route path='/confirm-account/:id' element={<ConfirmAccount/>} />
+        <Route path='/profile' element={<Profile/>} />
       </Route>
       {/* AdminRoute */}
       <Route path='/admin' element={<AdminRoute/>}>
         <Route path='userlist' element={<UserList/>} />
         <Route path='categorylist' element={<CategoryList/>} />
+        <Route path='productlist' element={<ProductList/>} />
       </Route>
     </Route>
   )
