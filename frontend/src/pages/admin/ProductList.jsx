@@ -8,11 +8,12 @@ import {useFetchCategoriesQuery} from '../../redux/api/categoryApiSlice';
 import {toast} from 'react-toastify';
 
 const ProductList = () => {
+    const {data: categories} = useFetchCategoriesQuery();
     const [image, setImage] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState(categories?.length > 0 ? categories[0]._id : "");
     const [quantity, setQuantity] = useState('');
     const [brand, setBrand] = useState('');
     const [stock, setStock] = useState(0);
@@ -21,7 +22,7 @@ const ProductList = () => {
 
     const [uploadProductImage] = useUploadProductImageMutation();
     const [createProduct] = useCreateProductMutation();
-    const {data: categories} = useFetchCategoriesQuery();
+    
 
     const uploadFileHandler = async (e) => {
         const formData = new FormData();
@@ -135,9 +136,10 @@ const ProductList = () => {
                                 <label htmlFor="">Category</label><br />
                                 <select placeholder='Category' 
                                     className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-black'
+                                    value={categories?._id}
                                     onChange={e=> setCategory(e.target.value)}
                                 >
-                                    {categories && categories.map(cat => (
+                                    {categories?.map(cat => (
                                         <option key={cat._id} value={cat._id}>
                                             {cat.name}
                                         </option>
