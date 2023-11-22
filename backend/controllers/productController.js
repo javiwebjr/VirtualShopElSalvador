@@ -11,20 +11,6 @@ const addProduct = Handler(async (req, res) => {
                 error: `${isMissingField.charAt(0).toUpperCase() + isMissingField.slice(1)} Is Required`
             });
         }
-        // switch (true) {
-        //     case !name:
-        //         return res.json({error: "Name Is Required"})
-        //     case !description:
-        //         return res.json({error: "Description Is Required"})
-        //     case !price:
-        //         return res.json({error: "Price Is Required"})
-        //     case !category:
-        //         return res.json({error: "Category Is Required"})
-        //     case !quantity:
-        //         return res.json({error: "Quantity Is Required"})
-        //     case !brand:
-        //         return res.json({error: "Brand Is Required"})
-        // }
         const product = new Product({...req.fields});
         await product.save();
         res.json(product);
@@ -36,7 +22,7 @@ const addProduct = Handler(async (req, res) => {
 
 const updateProduct = Handler(async (req, res) => {
     try {
-        const {name, description, price, category, quantity, brand} = req.fields;
+        const {name, description, price, category, quantity, brand, countInStock} = req.fields;
         const requiredFields = ['name', 'description', 'price', 'category', 'quantity', 'brand'];
         const isMissingField = requiredFields.find(field => !req.fields[field]);
         if(isMissingField){

@@ -6,6 +6,7 @@ import {
 } from '../../redux/api/productApiSlice';
 import {useFetchCategoriesQuery} from '../../redux/api/categoryApiSlice';
 import {toast} from 'react-toastify';
+import AdminMenu from './AdminMenu';
 
 const ProductList = () => {
     const {data: categories} = useFetchCategoriesQuery();
@@ -70,9 +71,9 @@ const ProductList = () => {
     return (
         <div className='container xl:mx-[9rem] sm:mx-[0]'>
             <div className="flex flex-col md:flex-row">
-                {/*AdminMenu */}
+                <AdminMenu/>
                 <div className="md:w-3/4 p-3">
-                    <div className="h-12">Create Product</div>
+                    <div className="h-12"><h2 className='text-4xl font-semibold'>Create Product</h2></div>
                     {imageUrl && (
                         <div className="text-center">
                             <img src={imageUrl} alt="product_image_admin" 
@@ -152,7 +153,7 @@ const ProductList = () => {
                                 </select>
                             </div>
                         </div>
-                        <button onClick={handleSubmit} className='py-4 px-10 mt-5 rounded text-lg bg-teal-500 text-white'>Submit</button>
+                        <button onClick={handleSubmit} className='py-4 px-10 mt-5 text-lg text-black bg-teal-500 hover:bg-teal-700 hover:text-white border-2 rounded-lg'>Submit</button>
                     </div>
                 </div>
             </div>
