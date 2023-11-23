@@ -101,7 +101,7 @@ const ProductUpdate = () => {
 
 
     return (
-        <div className='container xl:mx-[9rem] sm:mx-[0]'>
+        <div className='container xl:mx-[9rem] sm:mx-[0]' style={{width: 'calc(100% - 15%)'}}>
             <div className="flex flex-col md:flex-row justify-center items-center">
                 <AdminMenu/>
                 <div className="md:w-3/4 p-3">

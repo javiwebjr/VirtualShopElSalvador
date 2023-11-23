@@ -44,6 +44,10 @@ const productSchema = mongoose.Schema({
         type: ObjectId, ref: "Category",
         required: true
     },
+    subcategory: {
+        type: ObjectId, ref: "Subcategory",
+        required: true
+    },
     description: {
         type: String,
         required: true
