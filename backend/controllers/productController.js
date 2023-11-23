@@ -4,7 +4,7 @@ import Product from '../models/productModel.js';
 const addProduct = Handler(async (req, res) => {
     try {
         const {name, description, price, category, subcategory, quantity, brand} = req.fields;
-        const requiredFields = [name, description, price, category, subcategory, quantity, brand];
+        const requiredFields = ['name', 'description', 'price', 'category', 'subcategory', 'quantity', 'brand'];
         const isMissingField = requiredFields.find(field => !req.fields[field]);
         if(isMissingField){
             return res.json({
@@ -23,7 +23,7 @@ const addProduct = Handler(async (req, res) => {
 const updateProduct = Handler(async (req, res) => {
     try {
         const {name, description, price, category, subcategory, quantity, brand, countInStock} = req.fields;
-        const requiredFields = [name, description, price, category, subcategory, quantity, brand];
+        const requiredFields = ['name', 'description', 'price', 'category', 'subcategory', 'quantity', 'brand'];
         const isMissingField = requiredFields.find(field => !req.fields[field]);
         if(isMissingField){
             return res.json({

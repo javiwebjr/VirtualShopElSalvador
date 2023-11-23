@@ -17,16 +17,16 @@ const AllProducts = () => {
                         All Products
                         ({products.length})
                     </div>
-                    <div className="flex flex-wrap justify-around items-center">
+                    <div className="flex flex-wrap justify-center items-center gap-2">
                         {products.map(product => (
                             <Link 
                                 key={product?._id} 
                                 to={`/admin/product/update/${product?._id}`}
-                                className='block mb-4 overflow-hidden'
+                                className='block mb-4 overflow-hidden border-2 border-gray-300 p-3'
                             >
                                 <div className="flex">
                                     <img src={product?.image} alt={product.name}
-                                        className='w-[10rem] object-cover'
+                                        className='w-[8rem] h-[8rem] object-cover'
                                     />
                                     <div 
                                         className="p-4 flex flex-col justify-around"

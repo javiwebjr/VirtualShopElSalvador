@@ -7,14 +7,17 @@ import {
 import {useFetchCategoriesQuery} from '../../redux/api/categoryApiSlice';
 import {toast} from 'react-toastify';
 import AdminMenu from './AdminMenu';
+import { useFetchSubCategoriesQuery } from '../../redux/api/subCategoryApiSlice';
 
 const ProductList = () => {
     const {data: categories} = useFetchCategoriesQuery();
+    const {data: subcategories} = useFetchSubCategoriesQuery();
     const [image, setImage] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState("");
+    const [subcategory, setSubCategory] = useState("");
     const [quantity, setQuantity] = useState('');
     const [brand, setBrand] = useState('');
     const [stock, setStock] = useState(0);
@@ -26,9 +29,12 @@ const ProductList = () => {
     
     useEffect(() => {
         if (categories && categories.length > 0) {
-        setCategory(categories[0]._id);
+            setCategory(categories[0]._id);
         }
-    }, [categories]);
+        if (subcategories && subcategories.length > 0) {
+            setSubCategory(categories[0]._id);
+        }
+    }, [categories, subcategories]);
 
     const uploadFileHandler = async (e) => {
         const formData = new FormData();
@@ -51,6 +57,7 @@ const ProductList = () => {
             productData.append('description', description)
             productData.append('price', price)
             productData.append('category', category)
+            productData.append('subcategory', subcategory)
             productData.append('quantity', quantity)
             productData.append('brand', brand)
             productData.append('countInStock', stock)
@@ -129,7 +136,7 @@ const ProductList = () => {
                             value={description}
                             onChange={e => setDescription(e.target.value)}
                         ></textarea>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between gap-2">
                             <div>
                                 <label htmlFor="name block">Count in Stock</label><br />
                                 <input type="text" 
@@ -140,7 +147,7 @@ const ProductList = () => {
                             </div>
                             <div>
                                 <label htmlFor="">Category</label><br />
-                                <select placeholder='Category' 
+                                <select 
                                     className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-black'
                                     value={category || ""}
                                     onChange={e=> setCategory(e.target.value)}
@@ -148,6 +155,20 @@ const ProductList = () => {
                                     {categories?.map(cat => (
                                         <option key={cat._id} value={cat._id}>
                                             {cat.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label htmlFor="">SubCategory</label><br />
+                                <select 
+                                    className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-black'
+                                    value={subcategory || ""}
+                                    onChange={e=> setSubCategory(e.target.value)}
+                                >
+                                    {subcategories?.map(sub => (
+                                        <option key={sub._id} value={sub._id}>
+                                            {sub.name}
                                         </option>
                                     ))}
                                 </select>

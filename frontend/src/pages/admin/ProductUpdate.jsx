@@ -9,6 +9,7 @@ import {
 import { useFetchCategoriesQuery } from '../../redux/api/categoryApiSlice';
 import {toast} from 'react-toastify';
 import AdminMenu from './AdminMenu';
+import { useFetchSubCategoriesQuery } from '../../redux/api/subCategoryApiSlice';
 
 const ProductUpdate = () => {
     const params = useParams();
@@ -18,6 +19,7 @@ const ProductUpdate = () => {
     const [description, setDescription] = useState(productData?.description || "");
     const [price, setPrice] = useState(productData?.price || "");
     const [category, setCategory] = useState(productData?.category || "");
+    const [subcategory, setSubCategory] = useState(productData?.subcategory || "");
     const [quantity, setQuantity] = useState(productData?.quantity || "");
     const [brand, setBrand] = useState(productData?.brand || "");
     const [stock, setStock] = useState(productData?.countInStock || '');
@@ -25,6 +27,7 @@ const ProductUpdate = () => {
     
     const navigate = useNavigate();
     const {data: categories = []} = useFetchCategoriesQuery();
+    const {data: subcategories = []} = useFetchSubCategoriesQuery();
     const [uploadProductImage] = useUploadProductImageMutation();
     const [updateProduct] = useUpdateProductMutation();
     const [deleteProduct] = useDeleteProductMutation();
@@ -34,11 +37,26 @@ const ProductUpdate = () => {
             setDescription(productData.description);
             setPrice(productData.price);
             setCategory(productData.category?._id);
+            setSubCategory(productData.subcategory?._id);
             setQuantity(productData.quantity);
             setBrand(productData.brand);
             setImage(productData.image);
-            setStock(productData.countInStock || '')}
-    }, [productData]);
+            setStock(productData.countInStock || '')
+        };
+        if (categories && categories.length > 0) {
+            // Find the position category on the list
+            const currentCategoryIndex = categories.findIndex(cat => cat._id === productData?.category);
+    
+            // Set the product category to the current one (or the first one if not found)
+            setCategory(currentCategoryIndex !== -1 ? productData.category : categories[0]._id);
+        }
+        if (subcategories && subcategories.length > 0) {
+            //Same logic for subcategories so now we can update products without changing categories or disabling the api call
+            const currentSubCategoryIndex = subcategories.findIndex(cat => cat._id === productData?.subcategory);
+            setSubCategory(currentSubCategoryIndex !== -1 ? productData.subcategory : subcategories[0]._id);
+        }
+        
+    }, [productData, categories, subcategories]);
 
     const uploadFileHandler = async (e) => {
         const formData = new FormData();
@@ -60,11 +78,13 @@ const ProductUpdate = () => {
             formData.append("description", description);
             formData.append("price", price);
             formData.append("category", category);
+            formData.append("subcategory", subcategory);
             formData.append("quantity", quantity);
             formData.append("brand", brand);
             formData.append("countInStock", stock);
-            //debido a error sin seleccionar una categoria para evitar errores, hay que cancelar el llamado a la api
-            if(category === undefined)return;
+            //Fix the categories and subcategories undefined in the useEffect
+            // if(category === undefined)return;
+            // if(subcategory === undefined)return;
             const data = await updateProduct({ productId: params.id, formData });
             if (data?.error) {
                 toast.error(data.error, {
@@ -180,6 +200,20 @@ const ProductUpdate = () => {
                                     {categories?.map(cat => (
                                         <option key={cat._id} value={cat._id}>
                                             {cat.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label htmlFor="">SubCategory</label><br />
+                                <select placeholder='Category' 
+                                    className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-black'
+                                    value={subcategory || productData?.subcategory}
+                                    onChange={e=> setSubCategory(e.target.value)}
+                                >
+                                    {subcategories?.map(sub => (
+                                        <option key={sub._id} value={sub._id}>
+                                            {sub.name}
                                         </option>
                                     ))}
                                 </select>
