@@ -10,29 +10,29 @@ const AllProducts = () => {
     if(isLoading)return <Loader/>
     if(isError)return <div>Error Loading Products</div>
     return (
-        <div className='container mx-[9rem]'>
-            <div className="flex flex-col md:flex-row">
+        <div className='bg-gradient-to-tr from-slate-900 via-purple-900 to-slate-900'>
+            <div className="flex flex-col md:flex-row justify-center items-center">
                 <div className="p-3">
-                    <div className="ml-[2rem] text-xl font-bold h-12">
+                    <div className="ml-[15rem] text-2xl font-bold h-12 text-slate-300">
                         All Products
                         ({products.length})
                     </div>
-                    <div className="flex flex-wrap justify-center items-center gap-2">
+                    <div className="flex flex-wrap justify-center items-center gap-2 ">
                         {products.map(product => (
                             <Link 
                                 key={product?._id} 
                                 to={`/admin/product/update/${product?._id}`}
-                                className='block mb-4 overflow-hidden border-2 border-gray-300 p-3'
+                                className='block mb-4 overflow-hidden p-3 border-b border-gray-500'
                             >
-                                <div className="flex">
+                                <div className="flex ">
                                     <img src={product?.image} alt={product.name}
                                         className='w-[8rem] h-[8rem] object-cover'
                                     />
                                     <div 
-                                        className="p-4 flex flex-col justify-around"
+                                        className="p-4 flex flex-col justify-around "
                                     >
                                         <div className="flex justify-between">
-                                            <h5 className="text-xl font-semibold mb-2">
+                                            <h5 className="text-xl font-semibold mb-2 text-slate-100">
                                                 {product?.name}
                                             </h5>
                                             <p className="text-gray-400 text-sm">
@@ -46,7 +46,7 @@ const AllProducts = () => {
                                         </p>
                                         <div className="flex justify-between">
                                             <button onClick={() => window.location.href=`/admin/product/update/${product._id}`}
-                                                className='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black bg-teal-500 rounded hover:bg-teal-700 hover:text-white border-2'
+                                                className='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black bg-teal-500 rounded hover:bg-teal-700 hover:text-white'
                                             >
                                                 Update Product
                                             </button>

@@ -76,11 +76,11 @@ const ProductList = () => {
     }
 
     return (
-        <div className='container xl:mx-[9rem] sm:mx-[0]'>
-            <div className="flex flex-col md:flex-row">
+        <div className='h-[100vh] bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200'>
+            <div className="flex flex-col justify-center items-center md:flex-row">
                 <AdminMenu/>
                 <div className="md:w-3/4 p-3">
-                    <div className="h-12"><h2 className='text-4xl font-semibold'>Create Product</h2></div>
+                    <div className="h-12"><h2 className='text-4xl font-semibold text-slate-100'>Create Product</h2></div>
                     {imageUrl && (
                         <div className="text-center">
                             <img src={imageUrl} alt="product_image_admin" 

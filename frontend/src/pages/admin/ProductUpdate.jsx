@@ -10,6 +10,7 @@ import { useFetchCategoriesQuery } from '../../redux/api/categoryApiSlice';
 import {toast} from 'react-toastify';
 import AdminMenu from './AdminMenu';
 import { useFetchSubCategoriesQuery } from '../../redux/api/subCategoryApiSlice';
+import Loader from '../../components/Loader';
 
 const ProductUpdate = () => {
     const params = useParams();
@@ -26,11 +27,12 @@ const ProductUpdate = () => {
     
     
     const navigate = useNavigate();
-    const {data: categories = []} = useFetchCategoriesQuery();
+    const {data: categories = [], isLoading} = useFetchCategoriesQuery();
     const {data: subcategories = []} = useFetchSubCategoriesQuery();
     const [uploadProductImage] = useUploadProductImageMutation();
     const [updateProduct] = useUpdateProductMutation();
     const [deleteProduct] = useDeleteProductMutation();
+    
     useEffect(() => {
         if (productData && productData._id && productData.countInStock !== undefined) {
             setName(productData.name);
@@ -51,12 +53,13 @@ const ProductUpdate = () => {
             setCategory(currentCategoryIndex !== -1 ? productData.category : categories[0]._id);
         }
         if (subcategories && subcategories.length > 0) {
-            //Same logic for subcategories so now we can update products without changing categories or disabling the api call
+            //Same logic for subcategories so now we can update products and prevent the categories behavior or disabling the api call
             const currentSubCategoryIndex = subcategories.findIndex(cat => cat._id === productData?.subcategory);
             setSubCategory(currentSubCategoryIndex !== -1 ? productData.subcategory : subcategories[0]._id);
         }
         
     }, [productData, categories, subcategories]);
+    if(isLoading) return <Loader/>;
 
     const uploadFileHandler = async (e) => {
         const formData = new FormData();
@@ -121,11 +124,11 @@ const ProductUpdate = () => {
 
 
     return (
-        <div className='container xl:mx-[9rem] sm:mx-[0]' style={{width: 'calc(100% - 15%)'}}>
+        <div className='overflow-hidden sm:mx-[0] bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900'>
             <div className="flex flex-col md:flex-row justify-center items-center">
                 <AdminMenu/>
                 <div className="md:w-3/4 p-3">
-                    <div className="h-12"><h2 className='text-4xl font-semibold'>Update Products</h2></div>
+                    <div className="h-12"><h2 className='text-4xl font-semibold text-slate-300 mt-5'>Update Products</h2></div>
                     {image && (
                         <div className="text-center">
                             <img src={image} alt="product_image_admin" 
@@ -134,26 +137,26 @@ const ProductUpdate = () => {
                         </div>
                     )}
                     <div className="mb-3">
-                        <label className='border-2 text-black px-4 block w-full text-center rounded cursor-pointer font-bold py-11'>
+                        <label className='border-2 text-slate-100 px-4 block w-full text-center rounded cursor-pointer font-bold py-11'>
                             {image ? image.name : "Upload An Image"}
                             <input type="file" name='file' accept='image/*' 
                                 onChange={uploadFileHandler} 
-                                className={!image ? 'hidden' : 'text-black'}
+                                className={!image ? 'hidden' : 'text-slate-100'}
                             />
                         </label>
                     </div>
                     <div className="p-3">
                         <div className="flex flex-wrap gap-5">
                             <div className="">
-                                <label htmlFor="name">Name</label><br />
-                                <input type="text" className='p-4 mb-3 w-[30rem] rounded border bg-transparent text-black'
+                                <label htmlFor="name" className='text-slate-300'>Name</label><br />
+                                <input type="text" className='p-4 mb-3 w-[30rem] rounded border bg-transparent text-slate-100'
                                     value={name}
                                     onChange={e => setName(e.target.value)}
                                 />
                             </div>
                             <div className="">
-                                <label htmlFor="block">Price</label><br />
-                                <input type="number" className='p-4 mb-3 w-[30rem] rounded border bg-transparent text-black'
+                                <label htmlFor="block" className='text-slate-200'>Price</label><br />
+                                <input type="number" className='p-4 mb-3 w-[30rem] rounded border bg-transparent text-slate-100'
                                     value={price}
                                     onChange={e => setPrice(e.target.value)}
                                 />
@@ -161,39 +164,39 @@ const ProductUpdate = () => {
                         </div>
                         <div className="flex flex-wrap gap-5">
                             <div className="">
-                                <label htmlFor="name">Quantity</label><br />
-                                <input type="number" className='p-4 mb-3 w-[30rem] rounded border bg-transparent text-black'
+                                <label htmlFor="name" className='text-slate-200'>Quantity</label><br />
+                                <input type="number" className='p-4 mb-3 w-[30rem] rounded border bg-transparent text-slate-100'
                                     value={quantity}
                                     onChange={e => setQuantity(e.target.value)}
                                 />
                             </div>
                             <div className="">
-                                <label htmlFor="block">Brand</label><br />
-                                <input type="text" className='p-4 mb-3 w-[30rem] rounded border bg-transparent text-black'
+                                <label htmlFor="block" className='text-slate-200'>Brand</label><br />
+                                <input type="text" className='p-4 mb-3 w-[30rem] rounded border bg-transparent text-slate-100'
                                     value={brand}
                                     onChange={e => setBrand(e.target.value)}
                                 />
                             </div>
                         </div>
-                        <label htmlFor="" className='my-5'>Description</label>
+                        <label htmlFor="" className='my-5 text-slate-200'>Description</label>
                         <textarea type="text" 
-                            className='p-2 mb-3 bg-transparent border rounded w-[95%] text-black resize-none' 
+                            className='p-2 mb-3 bg-transparent border rounded w-[95%] text-slate-100 resize-none' 
                             value={description}
                             onChange={e => setDescription(e.target.value)}
                         ></textarea>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between gap-2 flex-wrap">
                             <div>
-                                <label htmlFor="name block">Count in Stock</label><br />
+                                <label htmlFor="name block" className='text-slate-200'>Count in Stock</label><br />
                                 <input type="text" 
-                                    className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-black'
+                                    className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-slate-100'
                                     value={stock}
                                     onChange={e => setStock(e.target.value)}
                                 />
                             </div>
                             <div>
-                                <label htmlFor="">Category</label><br />
+                                <label htmlFor="" className='text-slate-200'>Category</label><br />
                                 <select placeholder='Category' 
-                                    className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-black'
+                                    className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-slate-100'
                                     value={category || productData?.category}
                                     onChange={e=> setCategory(e.target.value)}
                                 >
@@ -205,9 +208,9 @@ const ProductUpdate = () => {
                                 </select>
                             </div>
                             <div>
-                                <label htmlFor="">SubCategory</label><br />
+                                <label htmlFor="" className='text-slate-200'>SubCategory</label><br />
                                 <select placeholder='Category' 
-                                    className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-black'
+                                    className='p-4 mb-3 w-[30rem] border rounded bg-transparent text-slate-100'
                                     value={subcategory || productData?.subcategory}
                                     onChange={e=> setSubCategory(e.target.value)}
                                 >
@@ -219,16 +222,18 @@ const ProductUpdate = () => {
                                 </select>
                             </div>
                         </div>
-                        <div>
+                        <div className='flex gap-6'>
                             <button 
                                 onClick={handleSubmit} 
-                                className='py-4 px-10 mt-5 text-lg text-black bg-orange-500 hover:bg-orange-700 hover:text-white border-2 rounded-lg'
+                                className='py-4 px-10 mt-5 text-lg text-white bg-slate-700 hover:bg-slate-900 hover:text-white border-2 border-black rounded-lg'
+                                disabled={isLoading}
                             >
                                 Update
                             </button>
                             <button 
                                 onClick={handleDelete} 
-                                className='py-4 px-10 mt-5 text-lg text-white bg-red-600 hover:bg-red-800 hover:text-slate-400 border-2 rounded-lg'
+                                className='py-4 px-10 mt-5 text-lg text-white bg-red-800 hover:bg-red-900 hover:text-slate-400 border-2 border-black rounded-lg'
+                                disabled={isLoading}
                             >
                                 Delete
                             </button>

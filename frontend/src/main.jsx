@@ -17,6 +17,7 @@ import ProductList from './pages/admin/ProductList.jsx';
 import ProductUpdate from './pages/admin/ProductUpdate.jsx';
 import AllProducts from './pages/admin/AllProducts.jsx';
 import "./index.css";
+import Home from './Home.jsx';
 // import ConfirmedRoute from './components/ConfirmedRoute.jsx';
 
 
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<App/>}>
       <Route path='/login' element={<Login/>} />
       <Route path='/register' element={<Register/>} />
+      <Route index={true} path='/' element={<Home/>}/>
       
       <Route path='' element={<PrivateRoute/>}>
         <Route path='/confirm-account/:id' element={<ConfirmAccount/>} />
