@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import moment from 'moment';
-import { FaBox, FaClock, FaShoppingCart, FaStar, FaStore } from 'react-icons/fa';
+import { FaBox, FaClock, FaShoppingCart, FaStar, FaStore, FaComment } from 'react-icons/fa';
 
 const ProductCarousel = () => {
     const {data: products, isLoading, error} = useGetTopProductsQuery();
@@ -51,7 +51,7 @@ const ProductCarousel = () => {
                                                 Added: {moment(createdAt).fromNow()}
                                             </h3>
                                             <h3 className="flex items-center mb-6 w-[15rem] text-sm font-light">
-                                                <FaStar className='mr-2 text-orange-400'/>
+                                                <FaComment className='mr-2 text-black'/>
                                                 Reviews: {numReviews}
                                             </h3>
                                         </div>
@@ -61,11 +61,11 @@ const ProductCarousel = () => {
                                                 Rating {Math.round(rating)}
                                             </h4>
                                             <h4 className="flex items-center mb-6 w-[10rem] text-sm font-light">
-                                                <FaShoppingCart className='mr-2 text-orange-400 ' />
+                                                <FaShoppingCart className='mr-2 text-black ' />
                                                 Quantity {quantity}
                                             </h4>
                                             <h4 className="flex items-center mb-6 w-[5rem] text-sm font-light">
-                                                <FaBox className='mr-2 text-orange-400 ' />
+                                                <FaBox className='mr-2 text-black ' />
                                                 In Stock {countInStock}
                                             </h4>
                                         </div>

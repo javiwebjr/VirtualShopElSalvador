@@ -18,6 +18,8 @@ import ProductUpdate from './pages/admin/ProductUpdate.jsx';
 import AllProducts from './pages/admin/AllProducts.jsx';
 import "./index.css";
 import Home from './Home.jsx';
+import Favorites from './pages/products/Favorites.jsx';
+import ProductDetails from './pages/products/ProductDetails.jsx';
 // import ConfirmedRoute from './components/ConfirmedRoute.jsx';
 
 
@@ -27,6 +29,8 @@ const router = createBrowserRouter(
       <Route path='/login' element={<Login/>} />
       <Route path='/register' element={<Register/>} />
       <Route index={true} path='/' element={<Home/>}/>
+      <Route path='/favorites' element={<Favorites/>} />
+      <Route path='/product/:id' element={<ProductDetails/>} />
       
       <Route path='' element={<PrivateRoute/>}>
         <Route path='/confirm-account/:id' element={<ConfirmAccount/>} />

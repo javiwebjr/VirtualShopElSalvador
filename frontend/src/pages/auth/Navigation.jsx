@@ -6,6 +6,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {useLogoutMutation} from '../../redux/api/usersApiSlice';
 import { logout } from '../../redux/features/auth/authSlice';
 import "./navigation.css";
+import FavoriteCount from '../products/FavoriteCount';
 
 const Navigation = () => {
     const {userInfo} = useSelector(state => state.auth);
@@ -47,20 +48,22 @@ const Navigation = () => {
         >
             <div className="flex flex-col justify-center space-y-4">
                 <Link to="/" className='flex items-center transition-transform transform hover:translate-x-2'>
-                    <AiOutlineHome size={26} className='mr-2 mt-[3rem]' />
+                    <AiOutlineHome size={20} className='mr-2 mt-[3rem]' />
                     <span className="hidden nav-item-name mt-[3rem]">Home</span>
                 </Link>
                 <Link to="/shop" className='flex items-center transition-transform transform hover:translate-x-2'>
-                    <AiOutlineShopping size={26} className='mr-2 mt-[3rem]' />
+                    <AiOutlineShopping size={20} className='mr-2 mt-[3rem]' />
                     <span className="hidden nav-item-name mt-[3rem]">Shop</span>
                 </Link>
                 <Link to="/cart" className='flex items-center transition-transform transform hover:translate-x-2'>
-                    <AiOutlineShoppingCart size={26} className='mr-2 mt-[3rem]' />
+                    <AiOutlineShoppingCart size={20} className='mr-2 mt-[3rem]' />
                     <span className="hidden nav-item-name mt-[3rem]">Cart</span>
                 </Link>
-                <Link to="/favorite" className='flex items-center transition-transform transform hover:translate-x-2'>
-                    <FaHeart size={26} className='mr-2 mt-[3rem]' />
+                <Link to="/favorites" className='flex items-center transition-transform transform hover:translate-x-2'>
+                    <FaHeart size={20} className='mr-2 mt-[3rem]' />
                     <span className="hidden nav-item-name mt-[3rem]">Favorite</span>
+                    {" "}
+                    <FavoriteCount/>
                 </Link>
                 
             </div>
