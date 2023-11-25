@@ -13,7 +13,7 @@ const Home = () => {
 
     return (
         <>
-            <Navigation/>
+            {/* <Navigation/> */}
             {!keyword ? <Header/> : null}
             {isLoading ? (<Loader/>) : isError ? (<Message variant='danger'>
                 {isError?.data.message || isError.error}

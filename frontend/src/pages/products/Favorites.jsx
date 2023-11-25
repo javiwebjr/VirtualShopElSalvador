@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import {selectFavoriteProduct} from '../../redux/features/favorites/favoriteSlice';
 import Product from './Product';
 import Navigation from '../auth/Navigation';
+import Navbar from '../../components/Navbar';
 
 const Favorites = () => {
     const favorites = useSelector(selectFavoriteProduct);
@@ -10,6 +11,7 @@ const Favorites = () => {
     return (
         <>
             <Navigation/>
+            <Navbar/>
             <div className='container ml-[10rem] flex'>
                 <div className='flex flex-col items-center justify-center m-auto'>
                     <h2 className="text-3xl font-bold mt-10 text-center">

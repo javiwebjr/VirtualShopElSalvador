@@ -3,6 +3,7 @@ import { useGetTopProductsQuery } from '../redux/api/productApiSlice';
 import Loader from './Loader';
 import SmallProduct from '../pages/products/SmallProduct';
 import ProductCarousel from '../pages/products/ProductCarousel';
+import Navbar from './Navbar';
 
 const Header = () => {
     const {data, isLoading, isError} = useGetTopProductsQuery();
@@ -10,6 +11,7 @@ const Header = () => {
     if(isError) return <span className='text-center text-3xl text-red-600'>ERROR LOADING PRODUCTS</span>
     return (
         <>
+            <Navbar/>
             <div className="flex justify-around items-center bg-slate-200">
                 <div className="xl:block lg:hidden md:hidden sm:hidden">
                     <div className="grid grid-cols-2">

@@ -10,6 +10,8 @@ import moment from 'moment';
 import HeartIcon from './HeartIcon';
 import Rating from './Rating';
 import ProductTabs from './ProductTabs';
+import Navigation from '../auth/Navigation';
+import Navbar from '../../components/Navbar';
 const ProductDetails = () => {
     const {id: productId} = useParams();
     const navigate = useNavigate();
@@ -40,15 +42,19 @@ const ProductDetails = () => {
     }
     return (
         <>
-            <Link to='/' className='text-black font-semibold hover:underline ml-40'>
-                Go Back
-            </Link>
+            <Navigation/>
+            <Navbar/>
+            <div className='w-full h-full'>
+                <Link to='/' className='bg-slate-200 block text-black font-semibold hover:underline pl-40'>
+                    Go Back
+                </Link>
+            </div>
             {isLoading ? (<Loader/>) : error ? (
                 <Message variant='danger'>
                     {error?.data?.message || error.message}
                 </Message>) 
                 : <>
-                    <div className="flex flex-wrap relative justify-center items-center mt-4">
+                    <div className="flex flex-wrap relative justify-center items-center bg-slate-200">
                     
                         <div>
                             <img src={product.image} 
@@ -120,7 +126,7 @@ const ProductDetails = () => {
                                 >Add To Cart</button>
                             </div>
                         </div>
-                        <div className="mt-[5rem] container flex flex-wrap items-start justify-between ml-40">
+                        <div className="mt-[5rem] container flex flex-wrap items-start justify-between ml-40 mb-10">
                             <ProductTabs 
                                 loadingProductReview={loadingProductReview}
                                 userInfo={userInfo}
