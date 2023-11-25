@@ -36,7 +36,15 @@ const Login = () => {
         <>
             <section className='flex flex-wrap w-[100vw] h-[100vh] bg-[url(https://images.unsplash.com/photo-1679136342027-cfec22cc22c2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover'>
                 <div className="w-[40%] pl-[10rem] pt-10">
-                    <h1 className='text-2xl font-semibold mb-4'>Sign In</h1>
+                    <div className='flex items-center justify-between'>
+                        <h2 className='text-2xl font-semibold mb-4'>Sign In</h2>
+                        <h1 className='text-4xl ml-20 font-bold hover:translate-x-2 transition-all'>
+                            <Link to='/'>
+                                Hey Boss El Salvador!
+                                <span className='text-sm font-light text-slate-800'>shop now</span>
+                            </Link>
+                        </h1>
+                    </div>
                     <form onSubmit={submitHandler} className='container w-[40rem]' method='POST'>
                         <div className='my-[2rem]'>
                             <label htmlFor="email" className='block text-black text-lg'>Email</label>

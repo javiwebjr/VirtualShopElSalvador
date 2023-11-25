@@ -5,6 +5,7 @@ import Loader from './components/Loader';
 import Header from './components/Header';
 import Message from './components/Message';
 import Product from './pages/products/Product';
+import Navigation from './pages/auth/Navigation';
 
 const Home = () => {
     const {keyword} = useParams();
@@ -12,6 +13,7 @@ const Home = () => {
 
     return (
         <>
+            <Navigation/>
             {!keyword ? <Header/> : null}
             {isLoading ? (<Loader/>) : isError ? (<Message variant='danger'>
                 {isError?.data.message || isError.error}

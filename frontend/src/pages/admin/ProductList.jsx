@@ -8,6 +8,7 @@ import {useFetchCategoriesQuery} from '../../redux/api/categoryApiSlice';
 import {toast} from 'react-toastify';
 import AdminMenu from './AdminMenu';
 import { useFetchSubCategoriesQuery } from '../../redux/api/subCategoryApiSlice';
+import Navigation from '../auth/Navigation';
 
 const ProductList = () => {
     const {data: categories} = useFetchCategoriesQuery();
@@ -76,6 +77,8 @@ const ProductList = () => {
     }
 
     return (
+        <>
+        <Navigation/>
         <div className='h-[100vh] bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200'>
             <div className="flex flex-col justify-center items-center md:flex-row">
                 <AdminMenu/>
@@ -179,6 +182,7 @@ const ProductList = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

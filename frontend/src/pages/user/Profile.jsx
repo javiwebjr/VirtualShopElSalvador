@@ -5,6 +5,7 @@ import Loader from '../../components/Loader';
 import { setCredentials } from '../../redux/features/auth/authSlice';
 import { Link } from 'react-router-dom';
 import { useProfileMutation } from '../../redux/api/usersApiSlice';
+import Navigation from '../auth/Navigation';
 
 const Profile = () => {
     const [username, setUsername] = useState("");
@@ -46,6 +47,8 @@ const Profile = () => {
     }
 
     return (
+        <>
+        <Navigation/>
         <div className='mx-auto p-4 w-[100vw] h-[100vh] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-400 to-sky-400'>
             <div className="flex flex-col justify-center items-center md:flex md:space-x-4 mt-[10rem]">
                 <h2 className='text-2xl font-semibold mb-4'>Update Profile</h2>
@@ -96,6 +99,7 @@ const Profile = () => {
                 {isLoading && <Loader/>}
             </div>
         </div>
+        </>
     )
 }
 

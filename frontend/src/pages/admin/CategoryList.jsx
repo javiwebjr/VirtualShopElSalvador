@@ -8,6 +8,7 @@ import { useCreateCategoryMutation,
 import CategoryForm from '../../components/CategoryForm';
 import Modal from '../../components/Modal';
 import AdminMenu from './AdminMenu';
+import Navigation from '../auth/Navigation';
 
 const CategoryList = () => {
     const {data: categories} = useFetchCategoriesQuery();
@@ -85,6 +86,8 @@ const CategoryList = () => {
     
 
     return (
+        <>
+        <Navigation/>
         <div className='ml-[10rem] flex flex-col md:flex-row'>
             <AdminMenu/>
             <div className="md:w-3/4 p-3">
@@ -123,6 +126,7 @@ const CategoryList = () => {
                 </Modal>
             </div>
         </div>
+        </>
     )
 }
 

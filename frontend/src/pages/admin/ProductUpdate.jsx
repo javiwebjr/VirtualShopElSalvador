@@ -11,6 +11,7 @@ import {toast} from 'react-toastify';
 import AdminMenu from './AdminMenu';
 import { useFetchSubCategoriesQuery } from '../../redux/api/subCategoryApiSlice';
 import Loader from '../../components/Loader';
+import Navigation from '../auth/Navigation';
 
 const ProductUpdate = () => {
     const params = useParams();
@@ -124,6 +125,8 @@ const ProductUpdate = () => {
 
 
     return (
+        <>
+        <Navigation/>
         <div className='overflow-hidden sm:mx-[0] bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900'>
             <div className="flex flex-col md:flex-row justify-center items-center">
                 <AdminMenu/>
@@ -242,6 +245,7 @@ const ProductUpdate = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

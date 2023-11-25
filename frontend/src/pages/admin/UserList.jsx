@@ -5,6 +5,7 @@ import {toast} from 'react-toastify';
 import Message from '../../components/Message'
 import { useGetUsersQuery, useDeleteUserMutation, useUpdateUserMutation } from '../../redux/api/usersApiSlice';
 import AdminMenu from './AdminMenu';
+import Navigation from '../auth/Navigation';
 
 const UserList = () => {
     const {data: users, refetch, isLoading, error} = useGetUsersQuery();
@@ -45,7 +46,8 @@ const UserList = () => {
         refetch();
     }, [refetch]);
     return (
-        // background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+        <>
+        <Navigation/>
         <div className='p-4 m-auto w-[100vw] h-[100vh] bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-orange-400 to-sky-400'>
             <h1 className='text-2xl font-semibold mb-4 text-black ml-[10rem]'>Users</h1>
             {isLoading ? (<Loader/>) : error ? 
@@ -115,6 +117,7 @@ const UserList = () => {
                 </div>
             )}
         </div>
+        </>
     )
 }
 

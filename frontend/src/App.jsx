@@ -7,7 +7,6 @@ function App() {
   return (
     <>
       <ToastContainer/>
-      <Navigation/>
       <main className="">
         <Outlet/>
       </main>
