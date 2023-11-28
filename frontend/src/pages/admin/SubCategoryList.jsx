@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {toast} from 'react-toastify';
 import { useCreateSubCategoryMutation,
     useFetchSubCategoriesQuery,
@@ -14,7 +14,7 @@ import Navigation from '../auth/Navigation';
 const SubCategoryList = () => {
     const {data: subCategories} = useFetchSubCategoriesQuery();
     const {data: categories} = useFetchCategoriesQuery();
-    const [category, setCategory] = useState(null);
+    const [category, setCategory] = useState(categories && categories.length > 0 ? categories[0]._id : null);
     const [name, setName] = useState('');
     const [selecteSubCategory, setSelectedSubCategory] = useState(null);
     const [updateSubCategoryName, setUpdateSubCategoryName] = useState('');
@@ -23,9 +23,15 @@ const SubCategoryList = () => {
     const [updateSubCategory] = useUpdateSubCategoryMutation();
     const [deleteSubCategory] = useDeleteSubCategoryMutation();
 
+    useEffect(() => {
+        if (categories && categories.length > 0) {
+            setCategory(categories[0]._id);
+        }
+    }, [categories]);
+
     const handleCategoryChange = (e) => {
         const categoryId = e.target.value;
-        setCategory(categories.find((category) => category._id === categoryId));
+        setCategory(categoryId);
     };
     
     const handlerCreateSubCategory = async (e) =>{
@@ -41,7 +47,7 @@ const SubCategoryList = () => {
                 return
             }
             setName('');
-            toast.success(`${res.name} Category Has Been Created Succesfully`)
+            toast.success(`${res.name} Has Been Created Succesfully`)
         } catch (error) {
             console.log(error);
             toast.error('Failed On Creating A Category...');
@@ -102,16 +108,20 @@ const SubCategoryList = () => {
         <div className='ml-[10rem] flex flex-col md:flex-row'>
             <AdminMenu/>
             <div className="md:w-3/4 p-3">
-                <div className="h-12"><h1 className='text-3xl font-semibold'>Manage SubCategories</h1></div>
-                <SubCategoryForm 
-                    value={name} 
-                    setValue={setName} 
-                    handleCategoryChange={handleCategoryChange}
-                    handlerCreate={handlerCreateSubCategory} 
-                    buttonText='Create'
-                />
-                <br />
-                <hr />
+                <div className="h-12">
+                    <h1 className='text-3xl font-semibold'>
+                        Manage SubCategories
+                    </h1>
+                </div>
+                    <SubCategoryForm 
+                        value={name} 
+                        setValue={setName} 
+                        handleCategoryChange={handleCategoryChange}
+                        handlerCreate={handlerCreateSubCategory || category} 
+                        buttonText='Create'
+                    />
+                    <br />
+                    <hr />
                 <div className="flex flex-wrap">
                     {subCategories?.map(subCategory => (
                         <div key={subCategory._id} className=''>
