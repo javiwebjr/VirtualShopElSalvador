@@ -12,7 +12,8 @@ import {
     addProductReview, 
     fetchTopProducts,
     fetchNewProducts,
-    filterProducts
+    filterProducts,
+    filterSubProducts
 } from "../controllers/productController.js";
 
 const router = express.Router();
@@ -33,4 +34,5 @@ router.route('/:id')
     .delete(auth, authorizeAdmin, formidable(), deleteProduct);
 
 router.route('/filter-products').post(filterProducts);
+router.route('/filter-subproducts').post(filterSubProducts);
 export default router;

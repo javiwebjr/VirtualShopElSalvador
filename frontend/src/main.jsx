@@ -23,6 +23,7 @@ import ProductDetails from './pages/products/ProductDetails.jsx';
 import Cart from './pages/Cart.jsx';
 import Shop from './pages/Shop.jsx';
 import SubCategoryList from './pages/admin/SubCategoryList.jsx';
+import SubShop from './pages/subShop.jsx';
 // import ConfirmedRoute from './components/ConfirmedRoute.jsx';
 
 
@@ -36,6 +37,7 @@ const router = createBrowserRouter(
       <Route path='/product/:id' element={<ProductDetails/>} />
       <Route path='/cart' element={<Cart/>} />
       <Route path='/shop' element={<Shop/>} />
+      <Route path='/subshop' element={<SubShop/>} />
       
       <Route path='' element={<PrivateRoute/>}>
         <Route path='/confirm-account/:id' element={<ConfirmAccount/>} />

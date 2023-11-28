@@ -1,61 +1,42 @@
 import React, {useEffect, useState} from 'react';
 import Navbar from '../components/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetFilteredProductsQuery } from '../redux/api/productApiSlice';
-import {setCategories, setProducts, setChecked} from '../redux/features/shop/shopSlice';
-import {useFetchCategoriesQuery} from '../redux/api/categoryApiSlice';
+import { useGetFilteredSubProductsQuery } from '../redux/api/productApiSlice';
+import {setSubCategories, setProducts, setChecked} from '../redux/features/shop/subShopSlice';
+import {useFetchSubCategoriesQuery} from '../redux/api/subCategoryApiSlice';
 import Loader from '../components/Loader';
 import ProductCard from './products/ProductCard';
 
-const Shop = () => {
+const SubShop = () => {
     const dispatch = useDispatch();
-    const {categories, products, checked, radio} = useSelector(state => state.shop);
-    const categoriesQuery = useFetchCategoriesQuery();
+    const {subcategories, products, checked, radio} = useSelector(state => state.subshop);
+    const subCategoriesQuery = useFetchSubCategoriesQuery();
     const [priceFilter, setPriceFilter] = useState('');
-    const filterProductsQuery = useGetFilteredProductsQuery({
+    const filterSubProductsQuery = useGetFilteredSubProductsQuery({
         checked, radio
     });
-
     useEffect(() => {
-        if(!categoriesQuery.isLoading){
-            dispatch(setCategories(categoriesQuery.data))
+        if(!subCategoriesQuery.isLoading){
+            dispatch(setSubCategories(subCategoriesQuery.data))
         }
-    }, [categoriesQuery.data, dispatch]);
+    }, [subCategoriesQuery.data, dispatch]);
 
     useEffect(() => {
         if(!checked.length || !radio.length){
-            if(!filterProductsQuery.isLoading){
-                const filterProducts = filterProductsQuery.data.filter(product => {
-                    return(
-                        product.price.toString().includes(priceFilter) || 
-                        product.price === parseInt(priceFilter, 10)
-                    );
-                });
+            if(!filterSubProductsQuery.isLoading){
+                const filterProducts = filterSubProductsQuery.data.filter(product => 
+                    product.subcategory
+                );
                 dispatch(setProducts(filterProducts));
             }
         };
-    }, [checked, radio, filterProductsQuery.data, dispatch, priceFilter]);
+    }, [checked, radio, filterSubProductsQuery.data, dispatch, priceFilter]);
 
-    const HandleBrandClick = brand => {
-        const productByBrand = filterProductsQuery.data?.filter(
-            product => product.brand === brand
-        );
-        dispatch(setProducts(productByBrand));
-    }
 
     const HandleCheck = (value, id) => {
         const updateChecked = value ? [...checked, id] : checked.filter(check => check !== id);
         dispatch(setChecked(updateChecked));
     }
-    const uniqueBrands = [
-        ...Array.from(
-            new Set(filterProductsQuery.data?.map(
-                product => product.brand).filter(
-                    brand => brand !== undefined
-                )
-            )
-        )
-    ];
     const handlePriceChange = e => {
         setPriceFilter(e.target.value);
     }
@@ -67,10 +48,10 @@ const Shop = () => {
                 <div className="flex md:flex-row relative">
                     <div className='bg-slate-400 p-3 mb-2 mt-[80px] fixed top-0 left-0 h-full'>
                         <h2 className='text-center py-2 bg-black rounded-full mb-2 text-white'>
-                            Filter By Categories
+                            Filter By SubCategories
                         </h2>
                         <div className="p-5 w-[15rem]">
-                            {categories?.map(cat => (
+                            {subcategories?.map(cat => (
                                 <div key={cat._id} className='mb-2'>
                                     <div className="flex items-center mr-4">
                                         <input type="checkbox" id='red-checkbox' 
@@ -86,23 +67,6 @@ const Shop = () => {
                                 </div>
                             ))}
                         </div>
-                        <h2 className='text-center py-2 bg-black rounded-full mb-2 text-white'>
-                            Filter By Brands
-                        </h2>
-                        <div className='p-5'>
-                            {uniqueBrands?.map(brand => (
-                                <>
-                                    <div key={brand} className='flex items-center mr-4 mb-5'>
-                                        <input type="radio" id={brand} name='brand' 
-                                            onChange={() => HandleBrandClick(brand)}
-                                            className='w-4 h-4 text-teal-400 bg-gray-100 border-slate-100 focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-slate-800 focus:ring-2 dark:bg-slate-700 dark:border-slate-600'
-                                        />
-                                        <label htmlFor='pink-radio' className="ml-2 text-sm font-medium text-white dark:text-gray-300">{brand}
-                                        </label>
-                                    </div>
-                                </>
-                            ))}
-                        </div>
                         <h2 className="text-center py-2 bg-black rounded-full mb-2 text-white">
                             Filter By Price
                         </h2>
@@ -113,11 +77,14 @@ const Shop = () => {
                             />
                         </div>
                         <div className="p-5 pt-0">
-                            <button className='w-full border my-4 bg-slate-200 text-gray-400 font-semibold hover:bg-slate-800 hover:text-white' onClick={() => window.location.reload()}>Reset</button>
+                            <button className='w-full border my-4 bg-slate-200 text-gray-400 font-semibold hover:bg-slate-800 hover:text-white' 
+                            onClick={() => window.location.reload()}>
+                                Reset
+                            </button>
                         </div>
                     </div>
                     <div className="p-3 pl-72 mt-[80px]">
-                        <h2 className='text-center mb-2'>
+                        <h2 className='text-center mb-2 font-semibold'>
                             {products?.length} Products
                         </h2>
                         <div className="flex flex-wrap">
@@ -136,4 +103,4 @@ const Shop = () => {
     )
 }
 
-export default Shop
+export default SubShop

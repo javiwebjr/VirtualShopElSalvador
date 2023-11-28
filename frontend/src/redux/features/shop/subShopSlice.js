@@ -1,18 +1,18 @@
 import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
-    categories: [],
+    subcategories: [],
     products: [],
     checked: [],
     radio: [],
     brandCheckboxes: {},
     checkedBrands: [],
 }
-const shopSlice = createSlice({
-    name: 'shop',
+const subShopSlice = createSlice({
+    name: 'subshop',
     initialState,
     reducers: {
-        setCategories: (state, action) => {
-            state.categories = action.payload
+        setSubCategories: (state, action) => {
+            state.subcategories = action.payload
         },
         setProducts: (state, action) => {
             state.products = action.payload
@@ -28,6 +28,6 @@ const shopSlice = createSlice({
         },
     }
 });
-export const {setCategories, setProducts, setChecked, setRadio, setSelectedBrands} = shopSlice.actions;
+export const {setSubCategories, setProducts, setChecked, setRadio, setSelectedBrands} = subShopSlice.actions;
 
-export default shopSlice.reducer;
+export default subShopSlice.reducer;

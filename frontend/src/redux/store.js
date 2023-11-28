@@ -5,6 +5,7 @@ import authReducer from './features/auth/authSlice';
 import favoritesReducer from '../redux/features/favorites/favoriteSlice';
 import cartSliceReducer from "./features/cart/cartSlice";
 import shopSliceReducer from "./features/shop/shopSlice";
+import subShopSliceReducer from './features/shop/subShopSlice';
 import { getFavorites } from "../utilities/favoriteStorage";
 
 const initialFavorites = getFavorites() || []; 
@@ -15,7 +16,8 @@ const store = configureStore({
         auth: authReducer,
         favorites: favoritesReducer,
         cart: cartSliceReducer,
-        shop: shopSliceReducer
+        shop: shopSliceReducer,
+        subshop: subShopSliceReducer
     },
     preloadedState: {
         favorites: initialFavorites
