@@ -20,6 +20,8 @@ import "./index.css";
 import Home from './Home.jsx';
 import Favorites from './pages/products/Favorites.jsx';
 import ProductDetails from './pages/products/ProductDetails.jsx';
+import Cart from './pages/Cart.jsx';
+import Shop from './pages/Shop.jsx';
 // import ConfirmedRoute from './components/ConfirmedRoute.jsx';
 
 
@@ -31,6 +33,8 @@ const router = createBrowserRouter(
       <Route index={true} path='/' element={<Home/>}/>
       <Route path='/favorites' element={<Favorites/>} />
       <Route path='/product/:id' element={<ProductDetails/>} />
+      <Route path='/cart' element={<Cart/>} />
+      <Route path='/shop' element={<Shop/>} />
       
       <Route path='' element={<PrivateRoute/>}>
         <Route path='/confirm-account/:id' element={<ConfirmAccount/>} />

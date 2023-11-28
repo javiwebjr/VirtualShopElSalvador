@@ -12,7 +12,7 @@ const Favorites = () => {
         <>
             <Navigation/>
             <Navbar/>
-            <div className='container ml-[10rem] flex'>
+            <div className='container ml-[10rem] flex mt-[80px]'>
                 <div className='flex flex-col items-center justify-center m-auto'>
                     <h2 className="text-3xl font-bold mt-10 text-center">
                         {userInfo ? 'Favorite Products' : 'Sign In And Add Your Favorites Products'}

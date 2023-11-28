@@ -10,6 +10,7 @@ import FavoriteCount from '../products/FavoriteCount';
 
 const Navigation = () => {
     const {userInfo} = useSelector(state => state.auth);
+    const {cartItems} = useSelector(state => state.cart);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [showSideBar, setShowSideBar] = useState(false);
     const handleMouseEnter = () => {
@@ -50,6 +51,7 @@ const Navigation = () => {
                 <Link to="/" className='flex items-center transition-transform transform hover:translate-x-2'>
                     <AiOutlineHome size={20} className='mr-2 mt-[3rem]' />
                     <span className="hidden nav-item-name mt-[3rem]">Home</span>
+                    
                 </Link>
                 <Link to="/shop" className='flex items-center transition-transform transform hover:translate-x-2'>
                     <AiOutlineShopping size={20} className='mr-2 mt-[3rem]' />
@@ -58,6 +60,13 @@ const Navigation = () => {
                 <Link to="/cart" className='flex items-center transition-transform transform hover:translate-x-2'>
                     <AiOutlineShoppingCart size={20} className='mr-2 mt-[3rem]' />
                     <span className="hidden nav-item-name mt-[3rem]">Cart</span>
+                    <div className="absolute top-8 left-3">
+                        {cartItems.length > 0 && (
+                            <span className='px-1 py-0 text-sm text-white bg-teal-500 rounded-full'>
+                                {cartItems.reduce((accumulator, item) => accumulator + item.quantity, 0)}
+                            </span>
+                        )}
+                    </div>
                 </Link>
                 <Link to="/favorites" className='flex items-center transition-transform transform hover:translate-x-2'>
                     <FaHeart size={20} className='mr-2 mt-[3rem]' />

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {toast} from 'react-toastify';
 import {useGetProductDetailsQuery, useCreateReviewMutation} from '../../redux/api/productApiSlice';
 import Loader from '../../components/Loader';
@@ -12,9 +12,11 @@ import Rating from './Rating';
 import ProductTabs from './ProductTabs';
 import Navigation from '../auth/Navigation';
 import Navbar from '../../components/Navbar';
+import { addToCart } from '../../redux/features/cart/cartSlice';
 const ProductDetails = () => {
     const {id: productId} = useParams();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(1);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
@@ -25,7 +27,8 @@ const ProductDetails = () => {
     const [createReview, {isLoading: loadingProductReview}] = useCreateReviewMutation();
 
     const addToCartHandler = () => {
-
+        dispatch(addToCart({...product, quantity}));
+        navigate('/cart')
     }
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -54,7 +57,7 @@ const ProductDetails = () => {
                     {error?.data?.message || error.message}
                 </Message>) 
                 : <>
-                    <div className="flex flex-wrap relative justify-center items-center bg-slate-200">
+                    <div className="flex flex-wrap relative justify-center items-center bg-slate-200 pt-[80px]">
                     
                         <div>
                             <img src={product.image} 

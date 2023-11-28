@@ -24,7 +24,7 @@ const HeartIcon = ({product}) => {
     }
 
     return (
-        <div onClick={toggleFavorite} className='absolute top 2 right-5 cursor-pointer'>
+        <div onClick={toggleFavorite} className='absolute top-2 right-5 cursor-pointer z-20'>
             {isFavorites ? (<FaHeart className='text-red-600' />) : (
                 <FaRegHeart className='text-black' />
             )}
