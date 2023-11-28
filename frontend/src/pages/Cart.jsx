@@ -24,7 +24,7 @@ const Cart = () => {
     return (
         <>
             <Navbar/>
-            <div className='container flex justify-around items-start flex-wrap mx-auto mt-[80px]'>
+            <div className='container flex justify-around items-start flex-wrap mx-auto mt-[130px]'>
                 {cartItems.length === 0 ? (<h2 className='text-4xl'>
                             Your Cart Is Empty 
                             <Link className='font-bold text-teal-500 hover:text-teal-700 hover:underline transition-all'>

@@ -5,7 +5,8 @@ import {FaUser, FaTimes} from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLogoutMutation } from '../redux/api/usersApiSlice';
 import { logout } from '../redux/features/auth/authSlice';
-import { AiOutlineLogin, AiOutlineUserAdd } from 'react-icons/ai';
+import AltNavbar from './AltNavbar';
+
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -61,6 +62,7 @@ const Navbar = () => {
         }
     }
     return (
+        <>
         <div className="flex justify-center items-center m-auto h-[80px] bg-slate-800 fixed top-0 left-0 w-full z-[99]">
             <div className="container flex justify-between items-center">
                 <button id="admin-menu-button" className={`${isMenuOpen ? '' : ''} bg-black p-2 rounded mr-12`} onClick={toggleMenu}>
@@ -111,7 +113,7 @@ const Navbar = () => {
                         </ul>
                     </section>
                 )}
-                <h1 className='text-3xl text-blue-300 font-bold text-center'>HEY BOSS</h1>
+                <h2 className='text-3xl text-blue-300 font-bold text-center'>HEY BOSS</h2>
                 <div 
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
@@ -150,6 +152,9 @@ const Navbar = () => {
                                     </li>
                                     <li>
                                         <Link to="/admin/subcategorylist" className='block px-4 py-2 hover:bg-gray-100'>SubCategories</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/admin/allproductslist" className='block px-4 py-2 hover:bg-gray-100'>All Products</Link>
                                     </li>
                                     <li>
                                         <Link to="/admin/orderlist" className='block px-4 py-2 hover:bg-gray-100'>
@@ -217,6 +222,8 @@ const Navbar = () => {
                 )}
             </div>
         </div>
+        <AltNavbar/>
+        </>
     )
 }
 

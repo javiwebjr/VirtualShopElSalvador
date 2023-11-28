@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetFilteredProductsQuery } from '../redux/api/productApiSlice';
 import {setCategories, setProducts, setChecked} from '../redux/features/shop/shopSlice';
 import {useFetchCategoriesQuery} from '../redux/api/categoryApiSlice';
-import Loader from '../components/Loader';
+import Oops from '../components/Oops';
 import ProductCard from './products/ProductCard';
 
 const Shop = () => {
@@ -65,7 +65,7 @@ const Shop = () => {
             <Navbar/>
             <div className='container mx-auto'>
                 <div className="flex md:flex-row relative">
-                    <div className='bg-slate-400 p-3 mb-2 mt-[80px] fixed top-0 left-0 h-full'>
+                    <div className='bg-slate-400 p-3 mb-2 mt-[130px] fixed top-0 left-0 h-full'>
                         <h2 className='text-center py-2 bg-black rounded-full mb-2 text-white'>
                             Filter By Categories
                         </h2>
@@ -116,13 +116,10 @@ const Shop = () => {
                             <button className='w-full border my-4 bg-slate-200 text-gray-400 font-semibold hover:bg-slate-800 hover:text-white' onClick={() => window.location.reload()}>Reset</button>
                         </div>
                     </div>
-                    <div className="p-3 pl-72 mt-[80px]">
-                        <h2 className='text-center mb-2'>
-                            {products?.length} Products
-                        </h2>
+                    <div className="p-3 pl-72 mt-[130px]">
                         <div className="flex flex-wrap">
                             {products.length === 0 ? (
-                                <Loader/>
+                                <Oops/>
                             ) : products?.map(prod => 
                                 <div key={prod._id} className='p-3'>
                                     <ProductCard prod={prod}/>

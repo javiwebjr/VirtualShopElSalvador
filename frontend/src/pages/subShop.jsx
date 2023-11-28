@@ -6,12 +6,12 @@ import {setSubCategories, setProducts, setChecked} from '../redux/features/shop/
 import {useFetchSubCategoriesQuery} from '../redux/api/subCategoryApiSlice';
 import Loader from '../components/Loader';
 import ProductCard from './products/ProductCard';
+import Oops from '../components/Oops';
 
 const SubShop = () => {
     const dispatch = useDispatch();
     const {subcategories, products, checked, radio} = useSelector(state => state.subshop);
     const subCategoriesQuery = useFetchSubCategoriesQuery();
-    const [priceFilter, setPriceFilter] = useState('');
     const filterSubProductsQuery = useGetFilteredSubProductsQuery({
         checked, radio
     });
@@ -30,15 +30,12 @@ const SubShop = () => {
                 dispatch(setProducts(filterProducts));
             }
         };
-    }, [checked, radio, filterSubProductsQuery.data, dispatch, priceFilter]);
+    }, [checked, radio, filterSubProductsQuery.data, dispatch]);
 
 
     const HandleCheck = (value, id) => {
         const updateChecked = value ? [...checked, id] : checked.filter(check => check !== id);
         dispatch(setChecked(updateChecked));
-    }
-    const handlePriceChange = e => {
-        setPriceFilter(e.target.value);
     }
 
     return (
@@ -46,7 +43,7 @@ const SubShop = () => {
             <Navbar/>
             <div className='container mx-auto'>
                 <div className="flex md:flex-row relative">
-                    <div className='bg-slate-400 p-3 mb-2 mt-[80px] fixed top-0 left-0 h-full'>
+                    <div className='bg-slate-400 p-3 mb-2 mt-[130px] fixed top-0 left-0 h-full'>
                         <h2 className='text-center py-2 bg-black rounded-full mb-2 text-white'>
                             Filter By SubCategories
                         </h2>
@@ -67,15 +64,6 @@ const SubShop = () => {
                                 </div>
                             ))}
                         </div>
-                        <h2 className="text-center py-2 bg-black rounded-full mb-2 text-white">
-                            Filter By Price
-                        </h2>
-                        <div className="p-5 w-[15rem]">
-                            <input type="text" placeholder='Enter Price' value={priceFilter} 
-                                onChange={handlePriceChange}
-                                className='w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-teal-900'
-                            />
-                        </div>
                         <div className="p-5 pt-0">
                             <button className='w-full border my-4 bg-slate-200 text-gray-400 font-semibold hover:bg-slate-800 hover:text-white' 
                             onClick={() => window.location.reload()}>
@@ -83,13 +71,10 @@ const SubShop = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="p-3 pl-72 mt-[80px]">
-                        <h2 className='text-center mb-2 font-semibold'>
-                            {products?.length} Products
-                        </h2>
-                        <div className="flex flex-wrap">
+                    <div className="p-3 pl-72 mt-[130px]">
+                        <div className="flex flex-wrap container">
                             {products.length === 0 ? (
-                                <Loader/>
+                                <Oops/>
                             ) : products?.map(prod => 
                                 <div key={prod._id} className='p-3'>
                                     <ProductCard prod={prod}/>
