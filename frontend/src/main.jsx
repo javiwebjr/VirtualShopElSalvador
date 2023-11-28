@@ -22,6 +22,7 @@ import Favorites from './pages/products/Favorites.jsx';
 import ProductDetails from './pages/products/ProductDetails.jsx';
 import Cart from './pages/Cart.jsx';
 import Shop from './pages/Shop.jsx';
+import SubCategoryList from './pages/admin/SubCategoryList.jsx';
 // import ConfirmedRoute from './components/ConfirmedRoute.jsx';
 
 
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
       <Route path='/admin' element={<AdminRoute/>}>
         <Route path='userlist' element={<UserList/>} />
         <Route path='categorylist' element={<CategoryList/>} />
+        <Route path='subcategorylist' element={<SubCategoryList/>} />
         <Route path='productlist' element={<ProductList/>} />
         <Route path='allproductslist' element={<AllProducts/>} />
         <Route path='product/update/:id' element={<ProductUpdate/>} />

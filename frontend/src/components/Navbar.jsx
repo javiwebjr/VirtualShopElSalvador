@@ -149,6 +149,9 @@ const Navbar = () => {
                                         <Link to="/admin/categorylist" className='block px-4 py-2 hover:bg-gray-100'>Categories</Link>
                                     </li>
                                     <li>
+                                        <Link to="/admin/subcategorylist" className='block px-4 py-2 hover:bg-gray-100'>SubCategories</Link>
+                                    </li>
+                                    <li>
                                         <Link to="/admin/orderlist" className='block px-4 py-2 hover:bg-gray-100'>
                                             Orders 
                                         </Link> 

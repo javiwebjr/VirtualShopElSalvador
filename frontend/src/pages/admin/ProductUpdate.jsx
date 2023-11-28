@@ -204,7 +204,9 @@ const ProductUpdate = () => {
                                     onChange={e=> setCategory(e.target.value)}
                                 >
                                     {categories?.map(cat => (
-                                        <option key={cat._id} value={cat._id}>
+                                        <option key={cat._id} value={cat._id}
+                                        className='text-slate-900'
+                                        >
                                             {cat.name}
                                         </option>
                                     ))}
@@ -218,7 +220,9 @@ const ProductUpdate = () => {
                                     onChange={e=> setSubCategory(e.target.value)}
                                 >
                                     {subcategories?.map(sub => (
-                                        <option key={sub._id} value={sub._id}>
+                                        <option key={sub._id} value={sub._id}
+                                            className='text-slate-900'
+                                        >
                                             {sub.name}
                                         </option>
                                     ))}
