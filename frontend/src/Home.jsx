@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Message from './components/Message';
 import Product from './pages/products/Product';
 import Navigation from './pages/auth/Navigation';
+import Footer from './components/Footer';
 
 const Home = () => {
     const {keyword} = useParams();
@@ -42,6 +43,7 @@ const Home = () => {
                     
                 </>
             )}
+            <Footer/>
         </>
     )
 }

@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaTrash } from 'react-icons/fa';
 import { addToCart, removeFromCart } from '../redux/features/cart/cartSlice';
+import FooterAbsolute from '../components/FooterAbsolute';
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -24,10 +25,10 @@ const Cart = () => {
     return (
         <>
             <Navbar/>
-            <div className='container flex justify-around items-start flex-wrap mx-auto mt-[130px]'>
-                {cartItems.length === 0 ? (<h2 className='text-4xl'>
+            <div className={`container flex justify-around items-start flex-wrap mx-auto mt-[130px] pb-52 pt-5`}>
+                {cartItems.length === 0 ? (<h2 className='text-4xl mb-96'>
                             Your Cart Is Empty 
-                            <Link className='font-bold text-teal-500 hover:text-teal-700 hover:underline transition-all'>
+                            <Link className={`font-bold text-teal-500 hover:text-teal-700 hover:underline transition-all`}>
                                 Start Shopping
                             </Link>
                         </h2>) : (
@@ -95,6 +96,7 @@ const Cart = () => {
                     </>
                 )}
             </div>
+            <FooterAbsolute/>
         </>
     )
 }

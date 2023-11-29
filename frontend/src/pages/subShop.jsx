@@ -7,6 +7,8 @@ import {useFetchSubCategoriesQuery} from '../redux/api/subCategoryApiSlice';
 import Loader from '../components/Loader';
 import ProductCard from './products/ProductCard';
 import Oops from '../components/Oops';
+import Footer from '../components/Footer';
+import FooterAbsolute from '../components/FooterAbsolute';
 
 const SubShop = () => {
     const dispatch = useDispatch();
@@ -41,7 +43,7 @@ const SubShop = () => {
     return (
         <>
             <Navbar/>
-            <div className='container mx-auto'>
+            <div className='container mx-auto pb-20'>
                 <div className="flex md:flex-row relative">
                     <div className='bg-slate-400 p-3 mb-2 mt-[130px] fixed top-0 left-0 h-full'>
                         <h2 className='text-center py-2 bg-black rounded-full mb-2 text-white'>
@@ -84,6 +86,7 @@ const SubShop = () => {
                     </div>
                 </div>
             </div>
+            <FooterAbsolute/>
         </>
     )
 }

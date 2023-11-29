@@ -5,7 +5,7 @@ import {toast} from 'react-toastify';
 import {useGetProductDetailsQuery, useCreateReviewMutation} from '../../redux/api/productApiSlice';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import { FaBox, FaClock, FaShoppingCart, FaStar, FaComment, FaApple } from 'react-icons/fa';
+import { FaBox, FaClock, FaShoppingCart, FaStar, FaComment, FaApple, FaBackspace, FaBackward } from 'react-icons/fa';
 import moment from 'moment';
 import HeartIcon from './HeartIcon';
 import Rating from './Rating';
@@ -13,6 +13,7 @@ import ProductTabs from './ProductTabs';
 import Navigation from '../auth/Navigation';
 import Navbar from '../../components/Navbar';
 import { addToCart } from '../../redux/features/cart/cartSlice';
+import FooterAbsolute from '../../components/FooterAbsolute';
 const ProductDetails = () => {
     const {id: productId} = useParams();
     const navigate = useNavigate();
@@ -47,8 +48,9 @@ const ProductDetails = () => {
         <>
             <Navigation/>
             <Navbar/>
-            <div className='w-full h-full'>
-                <Link to='/' className='bg-slate-200 block text-black font-semibold hover:underline pl-40'>
+            <div className='w-full h-full pt-[130px]'>
+                <Link to='/' className='bg-slate-200 flex items-center gap-2 text-black font-semibold hover:underline pl-40'>
+                    <FaBackward/>
                     Go Back
                 </Link>
             </div>
@@ -144,6 +146,7 @@ const ProductDetails = () => {
                     </div>
                 </>
             }
+            <FooterAbsolute/>
         </>
     )
 }

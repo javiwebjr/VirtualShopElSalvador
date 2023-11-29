@@ -6,6 +6,8 @@ import {setCategories, setProducts, setChecked} from '../redux/features/shop/sho
 import {useFetchCategoriesQuery} from '../redux/api/categoryApiSlice';
 import Oops from '../components/Oops';
 import ProductCard from './products/ProductCard';
+import Footer from '../components/Footer';
+import FooterAbsolute from '../components/FooterAbsolute';
 
 const Shop = () => {
     const dispatch = useDispatch();
@@ -129,6 +131,7 @@ const Shop = () => {
                     </div>
                 </div>
             </div>
+            <FooterAbsolute/>
         </>
     )
 }
