@@ -24,6 +24,8 @@ import Cart from './pages/Cart.jsx';
 import Shop from './pages/Shop.jsx';
 import SubCategoryList from './pages/admin/SubCategoryList.jsx';
 import SubShop from './pages/subShop.jsx';
+import Shipping from './pages/orders/Shipping.jsx';
+import PlaceOrder from './pages/orders/PlaceOrder.jsx';
 // import ConfirmedRoute from './components/ConfirmedRoute.jsx';
 
 
@@ -42,6 +44,9 @@ const router = createBrowserRouter(
       <Route path='' element={<PrivateRoute/>}>
         <Route path='/confirm-account/:id' element={<ConfirmAccount/>} />
         <Route path='/profile' element={<Profile/>} />
+        <Route path='/shipping' element={<Shipping/>} />
+        <Route path='/placeorder' element={<PlaceOrder/>} />
+
       </Route>
       {/* AdminRoute */}
       <Route path='/admin' element={<AdminRoute/>}>
