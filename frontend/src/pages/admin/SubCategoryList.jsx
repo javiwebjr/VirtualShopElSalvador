@@ -10,6 +10,7 @@ import SubCategoryForm from '../../components/SubCategoryForm';
 import Modal from '../../components/Modal';
 import AdminMenu from './AdminMenu';
 import Navigation from '../auth/Navigation';
+import Navbar from '../../components/Navbar';
 
 const SubCategoryList = () => {
     const {data: subCategories} = useFetchSubCategoriesQuery();
@@ -104,8 +105,8 @@ const SubCategoryList = () => {
 
     return (
         <>
-        <Navigation/>
-        <div className='ml-[10rem] flex flex-col md:flex-row'>
+        <Navbar/>
+        <div className='container mx-auto mt-[140px] flex flex-col md:flex-row'>
             <AdminMenu/>
             <div className="md:w-3/4 p-3">
                 <div className="h-12">

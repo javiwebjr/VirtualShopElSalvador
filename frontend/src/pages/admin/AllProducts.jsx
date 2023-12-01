@@ -5,6 +5,7 @@ import {useAllProductsQuery} from '../../redux/api/productApiSlice';
 import AdminMenu from './AdminMenu';
 import Loader from '../../components/Loader';
 import Navigation from '../auth/Navigation';
+import Navbar from '../../components/Navbar';
 
 const AllProducts = () => {
     const {data: products, isLoading, isError} = useAllProductsQuery();
@@ -12,8 +13,8 @@ const AllProducts = () => {
     if(isError)return <div>Error Loading Products</div>
     return (
         <>
-        <Navigation/>
-        <div className='bg-gradient-to-tr from-slate-900 via-purple-900 to-slate-900'>
+        <Navbar/>
+        <div className='bg-gradient-to-tr from-slate-900 via-purple-900 to-slate-900 mt-[130px]'>
             <div className="flex flex-col md:flex-row justify-center items-center">
                 <div className="p-3">
                     <div className="ml-[15rem] text-2xl font-bold h-12 text-slate-300">

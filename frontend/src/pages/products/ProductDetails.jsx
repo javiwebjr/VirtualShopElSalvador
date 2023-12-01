@@ -46,7 +46,6 @@ const ProductDetails = () => {
     }
     return (
         <>
-            <Navigation/>
             <Navbar/>
             <div className='w-full h-full pt-[130px]'>
                 <Link to='/' className='bg-slate-200 flex items-center gap-2 text-black font-semibold hover:underline pl-40'>

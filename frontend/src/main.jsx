@@ -30,6 +30,7 @@ import {PayPalScriptProvider} from '@paypal/react-paypal-js';
 import Order from './pages/orders/Order.jsx';
 import UserOrder from './pages/user/UserOrder.jsx';
 import OrderList from './pages/admin/OrderList.jsx';
+import AdminDashboard from './pages/admin/AdminDashboard.jsx';
 // import ConfirmedRoute from './components/ConfirmedRoute.jsx';
 
 
@@ -56,6 +57,7 @@ const router = createBrowserRouter(
       </Route>
       {/* AdminRoute */}
       <Route path='/admin' element={<AdminRoute/>}>
+        <Route path='dashboard' element={<AdminDashboard/>} />
         <Route path='userlist' element={<UserList/>} />
         <Route path='categorylist' element={<CategoryList/>} />
         <Route path='subcategorylist' element={<SubCategoryList/>} />

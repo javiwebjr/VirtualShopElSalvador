@@ -6,6 +6,7 @@ import Message from '../../components/Message'
 import { useGetUsersQuery, useDeleteUserMutation, useUpdateUserMutation } from '../../redux/api/usersApiSlice';
 import AdminMenu from './AdminMenu';
 import Navigation from '../auth/Navigation';
+import Navbar from '../../components/Navbar';
 
 const UserList = () => {
     const {data: users, refetch, isLoading, error} = useGetUsersQuery();
@@ -47,8 +48,8 @@ const UserList = () => {
     }, [refetch]);
     return (
         <>
-        <Navigation/>
-        <div className='p-4 m-auto w-[100vw] h-[100vh] bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-orange-400 to-sky-400'>
+        <Navbar/>
+        <div className=' mt-[130px] p-4 m-auto w-[100vw] h-[100vh] bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-orange-400 to-sky-400'>
             <h1 className='text-2xl font-semibold mb-4 text-black ml-[10rem]'>Users</h1>
             {isLoading ? (<Loader/>) : error ? 
             (<Message variant="error" >{error?.data?.message || error.message}

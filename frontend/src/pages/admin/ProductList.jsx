@@ -9,10 +9,12 @@ import {toast} from 'react-toastify';
 import AdminMenu from './AdminMenu';
 import { useFetchSubCategoriesQuery } from '../../redux/api/subCategoryApiSlice';
 import Navigation from '../auth/Navigation';
+import Navbar from '../../components/Navbar';
+import Loader from '../../components/Loader';
 
 const ProductList = () => {
-    const {data: categories} = useFetchCategoriesQuery();
-    const {data: subcategories} = useFetchSubCategoriesQuery();
+    const {data: categories , isLoading} = useFetchCategoriesQuery();
+    const {data: subcategories , isLoading: loadingSubcategorie} = useFetchSubCategoriesQuery();
     const [image, setImage] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -27,12 +29,15 @@ const ProductList = () => {
 
     const [uploadProductImage] = useUploadProductImageMutation();
     const [createProduct] = useCreateProductMutation();
+
+    
     
     useEffect(() => {
-        if (categories && categories.length > 0) {
+        
+        if (categories && categories?.length > 0) {
             setCategory(categories[0]._id);
         }
-        if (subcategories && subcategories.length > 0) {
+        if (subcategories && subcategories?.length > 0) {
             setSubCategory(categories[0]._id);
         }
     }, [categories, subcategories]);
@@ -78,10 +83,13 @@ const ProductList = () => {
 
     return (
         <>
-        <Navigation/>
-        <div className='h-[100vh] bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200'>
+        {isLoading && loadingSubcategorie ? (
+            <Loader/>
+        ) : (
+            <>
+                <Navbar/>
+        <div className='h-[100vh] mt-[130px] bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200'>
             <div className="flex flex-col justify-center items-center md:flex-row">
-                <AdminMenu/>
                 <div className="md:w-3/4 p-3">
                     <div className="h-12"><h2 className='text-4xl font-semibold text-slate-100'>Create Product</h2></div>
                     {imageUrl && (
@@ -182,6 +190,9 @@ const ProductList = () => {
                 </div>
             </div>
         </div>
+            </>
+        )}
+        
         </>
     )
 }

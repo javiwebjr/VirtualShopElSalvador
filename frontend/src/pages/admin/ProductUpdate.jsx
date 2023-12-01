@@ -12,6 +12,7 @@ import AdminMenu from './AdminMenu';
 import { useFetchSubCategoriesQuery } from '../../redux/api/subCategoryApiSlice';
 import Loader from '../../components/Loader';
 import Navigation from '../auth/Navigation';
+import Navbar from '../../components/Navbar';
 
 const ProductUpdate = () => {
     const params = useParams();
@@ -126,8 +127,8 @@ const ProductUpdate = () => {
 
     return (
         <>
-        <Navigation/>
-        <div className='overflow-hidden sm:mx-[0] bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900'>
+        <Navbar/>
+        <div className='mt-[130px] pb-52 overflow-hidden sm:mx-[0] bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900'>
             <div className="flex flex-col md:flex-row justify-center items-center">
                 <AdminMenu/>
                 <div className="md:w-3/4 p-3">

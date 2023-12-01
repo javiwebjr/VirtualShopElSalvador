@@ -8,7 +8,7 @@ import { useCreateCategoryMutation,
 import CategoryForm from '../../components/CategoryForm';
 import Modal from '../../components/Modal';
 import AdminMenu from './AdminMenu';
-import Navigation from '../auth/Navigation';
+import Navbar from '../../components/Navbar';
 
 const CategoryList = () => {
     const {data: categories} = useFetchCategoriesQuery();
@@ -87,8 +87,8 @@ const CategoryList = () => {
 
     return (
         <>
-        <Navigation/>
-        <div className='ml-[10rem] flex flex-col md:flex-row'>
+        <Navbar/>
+        <div className='container mx-auto mt-[140px] flex flex-col md:flex-row'>
             <AdminMenu/>
             <div className="md:w-3/4 p-3">
                 <div className="h-12"><h1 className='text-3xl font-semibold'>Manage Categories</h1></div>
