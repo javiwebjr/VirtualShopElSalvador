@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/" : "http://localhost:4000",
-      "/uploads/": "http://localhost:4000"
+      "/api/" : "https://heyboss.vercel.app",
+      "/uploads/": "https://heyboss.vercel.app"
     }
   }
 })
