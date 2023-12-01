@@ -50,7 +50,7 @@ const Login = () => {
                         <div className='my-[2rem]'>
                             <label htmlFor="email" className='block text-white text-lg'>Email</label>
                             <input type="email" id='email' 
-                                className='mt-1 p-2 border rounded w-full text-sm' placeholder='example@example.com'
+                                className='mt-1 p-2 border rounded w-full text-sm placeholder:text-black' placeholder='test@email.com'
                                 value={email}
                                 onChange={e=> setEmail(e.target.value)}
                             />
@@ -58,7 +58,7 @@ const Login = () => {
                         <div className='my-[2rem]'>
                             <label htmlFor="password" className='block text-white text-lg'>Password</label>
                             <input type="password" id='password' 
-                                className='mt-1 p-2 border rounded w-full text-sm' placeholder='Min 8 characters'
+                                className='mt-1 p-2 border rounded w-full text-sm placeholder:text-black' placeholder='password'
                                 autoComplete='off'
                                 value={password}
                                 onChange={e=> setPassword(e.target.value)}
