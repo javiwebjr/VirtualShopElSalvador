@@ -7,13 +7,14 @@ const Footer = () => {
     return (
         <div className={'w-full bg-slate-800'}>
             <div className="container flex justify-around mx-auto">
-                <h3 className='text-blue-300 text-2xl italic font-bold pt-10'>Hey Boss
+                <div className='text-blue-300 text-2xl italic font-bold pt-10'>
+                    <img src="/HeyBossDarkShort.png" alt="" />
                     <div className="flex gap-3 mt-2">
                         <FaInstagram className='text-white'/>
                         <FaFacebookSquare className='text-white'/>
                         <FaTwitter className='text-white'/>
                     </div>
-                </h3>
+                </div>
                 <div className="flex flex-col pt-10">
                     <Link to='/about' className='text-sm font-light text-slate-200 hover:underline hover:text-teal-500 transition-all'>
                         <h5>About</h5>
@@ -55,7 +56,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="container mx-auto flex items-center justify-center flex-col">
-                <img src="/pagadito.png" alt="accepted_pays_image_footer" 
+                <img src="/wompi-logo-white.png" alt="accepted_pays_image_footer" 
                     className='w-40 h-7 object-contain '
                 />
                 <img src="/pay.png" alt="accepted_pays_image_footer" 

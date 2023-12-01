@@ -8,6 +8,7 @@ import ProgressSteps from '../../components/ProgressSteps';
 import Loader from '../../components/Loader';
 import { useCreateOrderMutation } from '../../redux/api/orderApiSlice';
 import { clearCartItems } from '../../redux/features/cart/cartSlice';
+import FooterAbsolute from '../../components/FooterAbsolute';
 
 const PlaceOrder = () => {
     const navigate = useNavigate();
@@ -44,7 +45,7 @@ const PlaceOrder = () => {
         <>
             <Navbar/>
             <ProgressSteps step1 step2 step3/>
-            <div className='container mx-auto mt-5'>
+            <div className='container mx-auto mt-5 pb-52'>
                 {cart.cartItems.length === 0 ? (
                     <Message>Your Cart Is Empty</Message>
                 ): (
@@ -93,7 +94,7 @@ const PlaceOrder = () => {
                         </table>
                     </div>
                 )}
-                <div className="mt-8">
+                <div className="mt-8 pb-52">
                     <h2 className="text-2xl font-semibold mb-5">
                         Order Summary
                     </h2>
@@ -146,7 +147,7 @@ const PlaceOrder = () => {
                             {cart.paymentMethod}
                         </div>
                     </div>
-                    <button type='button' className='bg-teal-500 text-white py-2 px-4 rounded text-lg w-full mt-4' disabled={cart.cartItems === 0}
+                    <button type='button' className='bg-teal-500 text-white py-2 px-4 rounded text-lg w-[40%] mt-4' disabled={cart.cartItems === 0}
                         onClick={placeOrderHandler}
                     >
                         Make This Order
@@ -154,6 +155,7 @@ const PlaceOrder = () => {
                     {isLoading && (<Loader/>)}
                 </div>
             </div>
+            <FooterAbsolute/>
         </>
     )
 }

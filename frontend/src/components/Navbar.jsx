@@ -65,13 +65,14 @@ const Navbar = () => {
         <>
         <div className="flex justify-center items-center m-auto h-[80px] bg-slate-800 fixed top-0 left-0 w-full z-[99]">
             <div className="container flex justify-between items-center">
-                <button id="admin-menu-button" className={`${isMenuOpen ? '' : ''} bg-black p-2 rounded mr-12`} onClick={toggleMenu}>
+                {/* <button id="admin-menu-button" className={`${isMenuOpen ? '' : ''} bg-black p-2 rounded mr-12`} onClick={toggleMenu}>
                     <TfiAlignJustify size={20} className={`text-white ${isMenuOpen ? 'hidden' : ''}`}/>
                     {isMenuOpen && (
                         <FaTimes color='white' />
                     )}
-                </button>
-                {isMenuOpen && (
+                </button> */}
+                <img src="/rabbit.png" className='w-16 h-16' alt="" />
+                {/* {isMenuOpen && (
                     <section className='bg-slate-900 p-4 fixed top-6 left-16 z-50 rounded'>
                         <ul className="list-none mt-2">
                             <li>
@@ -112,8 +113,8 @@ const Navbar = () => {
                             </li>
                         </ul>
                     </section>
-                )}
-                <h2 className='text-3xl text-blue-300 font-bold text-center'>HEY BOSS</h2>
+                )} */}
+                <img src='/HeyBossDarkShort.png' className='h-16 w-16'/>
                 <div 
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
@@ -130,7 +131,7 @@ const Navbar = () => {
                             : <></>
                         }
                         {userInfo && (
-                            <FaUser/>
+                            <FaUser className='text-white'/>
                         )}
                     </button>
                     {dropdownOpen && userInfo && (
@@ -197,7 +198,7 @@ const Navbar = () => {
                             className='flex items-center text-gray-700 focus:outline-none hover:trigger'
                         >
                         {!userInfo && (
-                            <FaUser/>
+                            <FaUser className='text-white'/>
                         )}
                     </button>
                     {dropdownOpen && !userInfo && (

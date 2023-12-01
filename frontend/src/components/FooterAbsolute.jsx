@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const FooterAbsolute = () => {
 
     return (
-        <div className={'w-full bg-slate-800 relative bottom-0 left-0 z-[100]'}>
+        <div className={'w-full bg-slate-800 relative bottom-0 left-0 z-[100] mt-52'}>
             <div className="container flex justify-around mx-auto">
                 <h3 className='text-blue-300 text-2xl italic font-bold pt-10'>Hey Boss
                     <div className="flex gap-3 mt-2">
@@ -55,7 +55,7 @@ const FooterAbsolute = () => {
                 </div>
             </div>
             <div className="container mx-auto flex items-center justify-center flex-col">
-                <img src="/pagadito.png" alt="accepted_pays_image_FooterAbsolute" 
+                <img src="/wompi-logo-white.png" alt="accepted_pays_image_FooterAbsolute" 
                     className='w-40 h-7 object-contain '
                 />
                 <img src="/pay.png" alt="accepted_pays_image_FooterAbsolute" 

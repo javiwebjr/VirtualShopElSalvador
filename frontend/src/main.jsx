@@ -26,6 +26,10 @@ import SubCategoryList from './pages/admin/SubCategoryList.jsx';
 import SubShop from './pages/subShop.jsx';
 import Shipping from './pages/orders/Shipping.jsx';
 import PlaceOrder from './pages/orders/PlaceOrder.jsx';
+import {PayPalScriptProvider} from '@paypal/react-paypal-js';
+import Order from './pages/orders/Order.jsx';
+import UserOrder from './pages/user/UserOrder.jsx';
+import OrderList from './pages/admin/OrderList.jsx';
 // import ConfirmedRoute from './components/ConfirmedRoute.jsx';
 
 
@@ -40,12 +44,14 @@ const router = createBrowserRouter(
       <Route path='/cart' element={<Cart/>} />
       <Route path='/shop' element={<Shop/>} />
       <Route path='/subshop' element={<SubShop/>} />
+      <Route path='/user-orders' element={<UserOrder/>} />
       
       <Route path='' element={<PrivateRoute/>}>
         <Route path='/confirm-account/:id' element={<ConfirmAccount/>} />
         <Route path='/profile' element={<Profile/>} />
         <Route path='/shipping' element={<Shipping/>} />
         <Route path='/placeorder' element={<PlaceOrder/>} />
+        <Route path='/order/:id' element={<Order/>} />
 
       </Route>
       {/* AdminRoute */}
@@ -54,6 +60,7 @@ const router = createBrowserRouter(
         <Route path='categorylist' element={<CategoryList/>} />
         <Route path='subcategorylist' element={<SubCategoryList/>} />
         <Route path='productlist' element={<ProductList/>} />
+        <Route path='orderlist' element={<OrderList/>} />
         <Route path='allproductslist' element={<AllProducts/>} />
         <Route path='product/update/:id' element={<ProductUpdate/>} />
       </Route>
@@ -64,7 +71,9 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <PayPalScriptProvider>
+        <RouterProvider router={router} />
+      </PayPalScriptProvider>
     </Provider>
   // </React.StrictMode>,
 )

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate, Link } from 'react-router-dom';
-import {FaCartArrowDown, FaCodeBranch} from 'react-icons/fa'
+import {FaBorderAll, FaCartArrowDown, FaCodeBranch, FaFirstOrder, FaIdBadge, FaRegFolder, FaRegFolderOpen, FaShoppingBag} from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLogoutMutation } from '../redux/api/usersApiSlice';
 import { logout } from '../redux/features/auth/authSlice';
@@ -63,8 +63,8 @@ const AltNavbar = () => {
         <div className="flex justify-center items-center m-auto mt-[80px] h-[50px] bg-slate-700 fixed top-0 left-0 w-full z-[40]">
             <div className="container flex justify-between items-center">
                 
-                <Link to='/subshop' className='text-lg text-teal-300 font-light text-center hover:scale-110 hover:text-white transition-all flex items-center gap-1'>
-                    Subcategories <FaCodeBranch/>
+                <Link to='/user-orders' className='text-lg text-teal-300 font-light text-center hover:scale-110 hover:text-white transition-all flex items-center gap-1'>
+                    My Orders <FaRegFolderOpen/>
                 </Link>
                 <Link to='/shop' className='text-lg text-teal-300 font-light text-center hover:scale-110 hover:text-white transition-all flex items-center gap-1'>
                     Shop <AiFillShopping/>

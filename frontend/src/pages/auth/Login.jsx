@@ -34,20 +34,21 @@ const Login = () => {
 
     return (
         <>
-            <section className='flex flex-wrap w-[100vw] h-[100vh] bg-[url(https://images.unsplash.com/photo-1679136342027-cfec22cc22c2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover'>
-                <div className="w-[40%] pl-[10rem] pt-10">
+            <section className='w-[100vw] h-[100vh] bg-slate-900'>
+                <div className='bg-[url(/HeyBossDark.png)] bg-no-repeat bg-contain '>
+                <div className="w-[40%] pt-10 pl-[40rem]">
                     <div className='flex items-center justify-between'>
-                        <h2 className='text-2xl font-semibold mb-4'>Sign In</h2>
+                        <h2 className='text-2xl font-semibold mb-4 text-white'>Sign In</h2>
                         <h1 className='text-4xl ml-20 font-bold hover:translate-x-2 transition-all'>
-                            <Link to='/'>
+                            <Link to='/' className='text-white'>
                                 Hey Boss El Salvador!
-                                <span className='text-sm font-light text-slate-800'>shop now</span>
+                                <span className='text-sm font-light text-white'>shop now</span>
                             </Link>
                         </h1>
                     </div>
                     <form onSubmit={submitHandler} className='container w-[40rem]' method='POST'>
                         <div className='my-[2rem]'>
-                            <label htmlFor="email" className='block text-black text-lg'>Email</label>
+                            <label htmlFor="email" className='block text-white text-lg'>Email</label>
                             <input type="email" id='email' 
                                 className='mt-1 p-2 border rounded w-full text-sm' placeholder='example@example.com'
                                 value={email}
@@ -55,7 +56,7 @@ const Login = () => {
                             />
                         </div>
                         <div className='my-[2rem]'>
-                            <label htmlFor="password" className='block text-black text-lg'>Password</label>
+                            <label htmlFor="password" className='block text-white text-lg'>Password</label>
                             <input type="password" id='password' 
                                 className='mt-1 p-2 border rounded w-full text-sm' placeholder='Min 8 characters'
                                 autoComplete='off'
@@ -78,6 +79,7 @@ const Login = () => {
                         </p>
                         
                     </div>
+                </div>
                 </div>
                 
             </section>

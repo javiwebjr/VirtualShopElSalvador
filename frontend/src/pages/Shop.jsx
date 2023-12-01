@@ -8,6 +8,7 @@ import Oops from '../components/Oops';
 import ProductCard from './products/ProductCard';
 import Footer from '../components/Footer';
 import FooterAbsolute from '../components/FooterAbsolute';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
     const dispatch = useDispatch();
@@ -104,6 +105,14 @@ const Shop = () => {
                                     </div>
                                 </>
                             ))}
+                        </div>
+                        <h2 className='text-center py-2 bg-black rounded-full mb-2 text-white'>
+                            Filter By SubCategories
+                        </h2>
+                        <div className='p-5'>
+                            <Link to='/subshop' className='border border-slate-300 bg-slate-700 p-2 w-full block rounded text-white text-center'>
+                                SubCategories
+                            </Link>
                         </div>
                         <h2 className="text-center py-2 bg-black rounded-full mb-2 text-white">
                             Filter By Price
